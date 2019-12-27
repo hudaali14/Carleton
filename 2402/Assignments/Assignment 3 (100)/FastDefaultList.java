@@ -59,20 +59,6 @@ public class FastDefaultList<T> extends AbstractList<T> {
 		h = 0;
 		rand = new Random(0);
 	}
-	
-	
-	/**
-	 * Represents a node/index Pair
-	 */
-	protected class Pair {
-		Node u;
-		int i;
-
-		Pair(Node u, int i) {
-			this.u = u;
-			this.i = i;
-		}
-	}
 
 	/**
 	 * Find the node that precedes list index i in the skiplist.
@@ -81,9 +67,9 @@ public class FastDefaultList<T> extends AbstractList<T> {
 	 * @return the predecessor of the node at index i or the final
 	 * node if i exceeds size() - 1.
 	 */
-	protected Pair findPred(int i) {
+	protected Node findPred(int i) {
         // Hint: It's not enough to know u, you also need the value j,
-        // maybe change the return type to Pair and return the pair (u,j)
+        //       maybe return the pair (u,j)
 		Node u = sentinel;
 		int r = h;
 		int j = -1;   // index of the current node in list 0
@@ -94,33 +80,26 @@ public class FastDefaultList<T> extends AbstractList<T> {
 			}
 			r--;
 		}
-		Pair pair= new Pair(u, j);
-		return pair;
+		return u;
 	}
 
 	public T get(int i) {
         // Hint: this is too restrictive any non-negative i is allowed
-		if (i < 0) throw new IndexOutOfBoundsException();
-		// Hint: Are you sure findPred(i).next is the node you're looking for?
-		Pair pair=findPred(i);
-		Node u = sentinel;
-		if((pair.i + pair.u.length[0]) != i){
-			return null;
-		}
-		return pair.u.next[0].x;
+		if (i < 0 || i > n-1) throw new IndexOutOfBoundsException();
+        // Hint: Are you sure findPred(i).next is the node you're looking for?
+		return findPred(i).next[0].x;
 	}
 
 	public T set(int i, T x) {
         // Hint: this is too restrictive any non-negative i is allowed
-		if (i < 0) throw new IndexOutOfBoundsException();
+		if (i < 0 || i > n-1) throw new IndexOutOfBoundsException();
         // Hint: Are you sure findPred(i).next is the node you're looking for?
         //       If it's not, you'd better add a new node, maybe get everything
         //       else working and come back to this later.
-		Pair pair = findPred(i);
-		Node node= new Node(x, pickHeight());
-		remove(i);
-		add(i, node);
-		return node.x;
+		Node u = findPred(i).next[0];
+		T y = u.x;
+		u.x = x;
+		return y;
 	}
 
 	/**
@@ -170,7 +149,7 @@ public class FastDefaultList<T> extends AbstractList<T> {
 
 	public void add(int i, T x) {
         // Hint: bounds checking again!
-		if (i < 0) throw new IndexOutOfBoundsException();
+		if (i < 0 || i > n) throw new IndexOutOfBoundsException();
 		Node w = new Node(x, pickHeight());
 		if (w.height() > h)
 			h = w.height();
@@ -179,7 +158,7 @@ public class FastDefaultList<T> extends AbstractList<T> {
 
 	public T remove(int i) {
         // Hint: bounds checking again!
-		if (i < 0) throw new IndexOutOfBoundsException();
+		if (i < 0 || i > n-1) throw new IndexOutOfBoundsException();
 		T x = null;
 		Node u = sentinel;
 		int r = h;
@@ -215,47 +194,13 @@ public class FastDefaultList<T> extends AbstractList<T> {
 			Node u = sentinel;
 			while (u.next[0] != null) {
 				i += u.length[0];
-			    u = u.next[0];
+				u = u.next[0];
 				sb.append(" " + i + "=>" + u.x);
 			}
 			return sb.toString();
 	}
 
-
 	public static void main(String[] args) {
-		FastDefaultList<String> test = new FastDefaultList<String>();
-		//Node node= new Node("hey", 2);
-		System.out.println(test.get(1000));
-		test.add(1000, "hello");
-		System.out.println(test.toString());
-		System.out.println(test.get(1000));
-		System.out.println(test.get(500));
-		test.add(500, "goodbye");
-		System.out.println(test.toString());
-		System.out.println(test.get(500));
-		System.out.println(test.get(1000));
-		System.out.println(test.get(1001));
-		test.remove(20);
-		System.out.println(test.toString());
-		System.out.println(test.get(500));
-		System.out.println(test.get(499));
-
-		test.set(200, "hey");
-		System.out.println(test.toString());
-
-		// test.add(2, "boo");
-		// test.add(3, "blah");
-		//System.out.println(test.toString());
-		// Node u= test.sentinel; 
-		// while(u.next[0]!=null){
-		// 	for(int i=0; i<u.length.length; i++){
-		// 		System.out.println(u.length[i]);
-		// 	}
-		// }
-		// System.out.println(test.sentinel.next[0].length[0]);
-		// System.out.println(test.sentinel.next[1].length[]);
-		// System.out.println(test.sentinel.next[1].length[1]);
-		// System.out.println(test.get(500));
 		// put your test code here if you like
 	}
 }
