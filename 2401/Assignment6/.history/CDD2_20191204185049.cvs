@@ -1,0 +1,13 @@
+EVENT CATEGORY,EVENT GROUP,EVENT SUBGROUP,EVENT TYPE,PLACE,EVENT START DATE,FATALITIES,INJURED / INFECTED,EVACUATED,ESTIMATED TOTAL COST,NORMALIZED TOTAL COST,EVENT END DATE,FEDERAL DFAA PAYMENTS,PROVINCIAL DFAA PAYMENTS,PROVINCIAL DEPARTMENT PAYMENTS,MUNICIPAL COSTS,OGD COSTS,INSURANCE PAYMENTS,NGO PAYMENTS,UTILITY - PEOPLE AFFECTED,MAGNITUDE
+Incident,Technology,Fire,Non-Residential,Ottawa ON and Hull QC,4/26/1900 12:00:00 AM,7,0,15000,,,4/26/1900 12:00:00 AM,,,,,,,,0,0
+Incident,Technology,Explosion,Non-Residential,Grand Forks BC,1/1/1901 12:00:00 AM,64,0,0,,,1/1/1901 12:00:00 AM,,,,,,,,0,0
+Incident,Technology,Infrastructure failure,Manufacturing / Industry,Wellington BC,1/1/1901 12:00:00 AM,16,0,0,,,1/1/1901 12:00:00 AM,,,,,,,,0,0
+Incident,Technology,Explosion,Non-Residential,Cranberry BC,1/1/1902 12:00:00 AM,32,0,0,,,1/1/1902 12:00:00 AM,,,,,,,,0,0
+Disaster,Natural,Meteorological - Hydrological,Flood,Saint John River Basin NB,3/1/1902 12:00:00 AM,2,0,0,,,3/1/1902 12:00:00 AM,,,,,,,,0,0
+Incident,Technology,Explosion,Non-Residential,Fernie BC,5/22/1902 12:00:00 AM,125,0,0,,,5/22/1902 12:00:00 AM,,,,,,,,0,0
+Incident,Technology,Explosion,Non-Residential,Grand Forks BC,1/1/1903 12:00:00 AM,16,0,0,,,1/1/1903 12:00:00 AM,,,,,,,,0,0
+Disaster,Natural,Geological,Landslide,Frank AB,4/29/1903 12:00:00 AM,70,23,0,,,4/29/1903 12:00:00 AM,,,,,,,,0,0
+Incident,Technology,Explosion,Non-Residential,Carbonado BC,1/1/1904 12:00:00 AM,14,0,0,,,1/1/1904 12:00:00 AM,,,,,,,,0,0
+Disaster,Natural,Meteorological - Hydrological,Storms and Severe Thunderstorms,Edmonton AB,9/1/1992 12:00:00 AM,0,0,0,22522000,1608714.3,9/1/1992 12:00:00 AM,,,14434443,,,8087557,,0,0
+Disaster,Natural,Meteorological - Hydrological,Storms and Severe Thunderstorms,Calgary AB,7/17/1995 12:00:00 AM,0,0,0,74559612,5106822.7,7/17/1995 12:00:00 AM,,,18858612,,,55701000,,0,0
+Disaster,Natural,Geological,Landslide,Upper Arrow Lake BC,2/28/1903 12:00:00 AM,0,0,0,,,2/28/1903 12:00:00 AM,,,,,,,,0,0

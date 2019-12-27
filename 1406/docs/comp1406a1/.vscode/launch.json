@@ -1,0 +1,38 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Find",
+            "request": "launch",
+            "mainClass": "comp1406a1.Find"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Grades",
+            "request": "launch",
+            "mainClass": "comp1406a1.Grades"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - FindAgain",
+            "request": "launch",
+            "mainClass": "comp1406a1.FindAgain"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch) - Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-SudokuChecker",
+            "request": "launch",
+            "mainClass": "comp1406a1.SudokuChecker"
+        }
+    ]
+}
