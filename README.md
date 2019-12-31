@@ -1,4 +1,4 @@
-Carleton University Programming Assignments
+CARLETON UNIVERSITY PROGRAMMING ASSIGNMENTS
 
 A collection of all the programming assignments I've completed over the course of my undergraduate degree (2018-2023)
 
