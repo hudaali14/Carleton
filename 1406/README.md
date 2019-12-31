@@ -1,6 +1,9 @@
-{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf100
-{\fonttbl}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\margl1440\margr1440\vieww10800\viewh8400\viewkind0
-}
+COMP 1406 Introduction to Computer Science II
+
+A second course in programming for BCS students, emphasizing problem solving and computational thinking in an object-oriented language. Topics include abstraction, mutable data structures, methods, inheritance, polymorphism, recursion, program efficiency, testing and debugging.
+
+Term: Winter 2019
+
+Professor: Jason Hinek
+
+Programming Language: Java
