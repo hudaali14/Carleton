@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>COMP2601</title>
+<link href="template.css" rel="stylesheet" type="text/css" />
+<style>
+body {
+	font-family: arial;
+	margin-left: 80px;
+}
+p {
+	font-size:24px;
+}
+pre {font-size:20px;}
+hr {
+	width: 100%;
+	height: 2px;
+	
+	margin-top:10px;
+	margin-bottom:10px
+}
+.header {
+	text-align: center;
+	font-weight: bold;
+	font-size: 40px;
+	
+	margin-top:0px;
+	margin-bottom:0px;
+	
+	color: rgb(153, 0, 0);
+}
+.subheader {
+	color: #000099;
+	
+	margin-bottom:100px;
+}
+.segment-header {
+	color: rgb(0, 0, 153);
+	font-size: 30px;
+}
+.black-bold {
+	color: rgb(0,0,0);
+	font-weight: bold;
+}
+.glossary-term {
+	font-weight: 700;
+	color: #000099;
+}
+.code {
+	font-family: 'Courier New';
+}
+.comment {
+	color:rgb(0, 128, 0);
+}
+ul li {
+	margin-bottom: 5px;
+	font-size:24px;
+}.red {
+	color: #F00;
+}
+</style>
+</head>
+<body>
+<p class="header">COMP 1601 Winter 2020</p>
+<p class="header subheader">Tut02 -Hello World Project from Scratch and Basic Java</p>
+<p>&copy; L.D. Nel 2020</p>
+<hr/>
+<p class="red">Revisions:</p>
+<hr/>
+<p class="segment-header">Description</p>
+<p>Part 1: The purpose of this exercise is to build the hello world project from scratch that we used to test our Android Studio installation in the previous exercise. This will be the launching point to start to investigate the parts that make up an android application.</p>
+<p>Part 2: As a second part we want you to run a simple java program outside the android environment. This will allow us to do simple java experiments when learning the java programming language and object-oriented programming .</p>
+<p class="red">You need to demonstrate your exercise to the TA or Prof. before you leave the class to get credit for it. If you complete, or make significant progress on the exercise you will get a mark of 2. If you make some progress you will get a mark of 1 and can &quot;upgrade&quot; that mark to a 2 by showing your completed work within one week of this exercise. 0 marks for a no-show or unsufficient progress.</p>
+<hr/>
+<p class="segment-header">Part I: Background<br /></p>
+<p class="red">[Note: in the screen captures that follow I've included some things that went wrong last year. They might not be relevent this year but I'm trying to show some things that typically go wrong. In writing this tutorial I did not have such errors this year but your experience might be different -let us know.]</p>
+<p>In the previous class exercise you opened a pre-made Android &quot;hello world&quot; app to see that the Android Studio was installed properly and to run the app on an AVD simulator. Moreover that was an older Hello World project migrated to the current API level. Now we want to actually build the &quot;hello world&quot; app from scratch using Android Studio.</p>
+<p>The class exercise will introduce a lot of new concepts and terms. Don't expect to understand them completely now but start researching them. They will become more clear as the course unfolds.</p>
+<p>&nbsp;</p>
+<p class="segment-header">Demo Code</p>
+<p>This exercise has no demo code as we are building things from scratch.</p>
+<p class="red">(Note the screen captures in this exercise are what I experienced putting the tutorial together. Yours may vary. Please help us by pointing out significant variations that you encounter.)</p>
+<p>&nbsp;</p>
+<p class="segment-header">Step 1)</p>
+<p>The first thing we need to do is create an Android Studio Project from scratch. An <span class="black-bold">Android Studio Project</span> manages the files the make up an <span class="black-bold">Application</span>.</p>
+<p>Launch Android Studio and at the welcome screen (If you already have a project open close it to show the welcome screen or alternatively choose <span class="black-bold">File-&gt;New-&gt;New Project...</span>).</p>
+<img src="images/step1-1.png" alt=""/>
+
+<p>&nbsp;</p>
+<p>Choose <span class="black-bold">Start a new Android Studio project</span> which will launch some dialogs used to obtain in formation about your new project.</p>
+<p>Choose <span class="black-bold">Phone and Tablet</span> and <span class="black-bold">Empty Activity</span> for the kind of project to build.<img src="images/step1-2.png" alt=""/></p>
+<p>&nbsp;</p>
+<p><img src="images/step1-3.png" width="885" height="684" alt=""/></p>
+<p>Provide an <span class="black-bold">Application Name</span>, the name your app will be known by e.g. <span class="code">Hello World</span>. It is also the name your app will have if it is sold on the Google Play store.</p>
+<p>Provide a <span class="black-bold">Package name</span> which should be a unique identifier for your app within the Android app echo system. It is typical to use the company domain in reverse followed by a name particular to the app. For example: <span class="code">com.comp1601.helloworld</span>. All Java code will be in &quot;packages&quot; (essentially folders).</p>
+<p>Choose a location to store your project (location paths <span class="black-bold">must not</span> have blanks in them). </p>
+<p>Choose Java as the application language (default might be set to Kotlin).</p>
+<p>Choose API 19 as the minimum supported application level. This means only android devices running at least Android API level 19 will be able to run your app</p>
+<p>Make sure thatthat <span class="black-bold">This project will support Instant Apps</span> is <span class="black-bold">NOT</span> checked. </p>
+<p>&nbsp;</p>
+<p>Note the  <span class="black-bold">Help me choose</span> link will open a dialog showing the &quot;consequences&quot; of the miminuim API level you choose. Click on one of those levels to see the features that became available at that level. Also notice the indication of what percentage of existing devices would be able to run your app. API level 15 gives about 100% coverage, API level 24 about 37%. (These numbers are ever changing.) </p>
+<p>&nbsp;</p>
+<p><img src="images/step2-2.png" width="1092" height="750" alt=""/></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Click <span class="black-bold">Finish</span> to create the project. Android Studio will &quot;whir and grind&quot; a bit and generate the project:</p>
+<p>Sometimes (as shown here for a previous year) you might get prompted to install some missing components and you might have to do the &quot;Try Again&quot; re-synch.</p>
+<p><img src="images/step3-3.png" width="1093" height="775" alt=""/></p>
+<p>&nbsp;</p>
+<p class="segment-header">Step 2)</p>
+<p>When you installed Android Studio it would have installed the latest SDK (likely 29). (Sometimes the new project dialog may not have created a project with the same (latest) API level. Lets look at what SDK is installed by using Android Studio's SDK Manager</p>
+<p><img src="images/step4-1.png" alt=""/></p>
+<p>&nbsp;</p>
+<p>SDK Manager:</p>
+<p><img src="images/step4-2.png" alt="" width="658" height="449"/></p>
+<p>&nbsp;</p>
+<p>We can see from this that only SDK level 29 is installed (the latest version when I installed my Android Studio at the time of this writing.) If our generated project requires a different SDK level, say 26, there are two options: install SDK level 26 as well or reset the level demanded by the project. Do the latter if necessary.</p>
+<p>Once Android studio has finished creating the procject (stopped &quot;whirring and grinding&quot;) Locate in the <span class="code">build.gradle (Module: app) </span> file in the Android project structure pane. Double click that and it will reveal some details about the build specification. In particular that it's set to compile and target SDK level 29: (There are several build.gradle files, choose the one associated with the <span class="black-bold">Module: app</span>; it should look similar to what is shown below.)</p>
+<p><img src="images/step4-3.png" alt=""/></p>
+<p>If levels were not right you would likely get a sync failed message. Change the level, if necessary, to your installed SDK level (29 in this case) and click &quot;Try Again&quot; to try and resynch the project with the Gradle Build Process (how android studio tries to compile. -shown below for a level 27 project from last year.)</p>
+<p><img src="images/step4-4.png" width="1229" height="775" alt=""/></p>
+<p>&nbsp;</p>
+<p>Again there will be some &quot;whirring and grinding&quot; and with some success. This time however you might notice a red underline in another field:</p>
+<p><img src="images/step4-5.png" width="1224" height="560" alt=""/></p>
+<p>&nbsp;</p>
+<p>Apparently a support library is still at level 26.</p>
+<p>Hover over the underlined item and you should see:</p>
+<p><img src="images/step4-6.png" width="771" height="131" alt=""/></p>
+<p>Next actually click on the underlined link. You should see a little &quot;red balloon&quot; and when you click on that you will see a dropdown menu with some suggestions on solving the problem. We want the <span class="black-bold">Replace with 27.0.2</span> option. Click on that. Android studio will use this mechanism to make suggestions about replacing out of date components.</p>
+<p><img src="images/step4-7.png" width="746" height="282" alt=""/></p>
+<p>After such corrections you will likely see an indicator that Gradle needs to be synched. Go ahead and <span class="black-bold">Sync Now</span>:</p>
+<p>&nbsp;</p>
+<p><img src="images/step4-8.png" width="857" height="145" alt=""/></p>
+<p>&nbsp;</p>
+<p>Rebuild the project by choosing <span class="black-bold">Build/Rebuild Project</span> from the menubar.</p>
+<p><img src="images/step4-9.png" alt=""/></p>
+<p>&nbsp;</p>
+<p class="segment-header">Step 3)</p>
+<p>To test what we have so far launch an AVD (built in the previous class exercise). To do so click the AVD Manager icon and launch the AVD Manager.</p>
+<p><img src="images/step5-1.png" alt=""/></p>
+<p>Select the AVD you previously built (if it's no longer there review the previous tutorial exercise and rebuild one.) Launch the AVD by clicking the green run arrow:</p>
+<p><img src="images/step5-2.png" width="879" height="364" alt=""/></p>
+<p>&nbsp;</p>
+<p>This will (eventually) launch your AVD:</p>
+<p><img src="images/step5-3.png" alt=""/></p>
+<p>&nbsp;</p>
+<p>Run the app created so far by clicking the &quot;run app&quot; green arrow in Android Studio:</p>
+<p><img src="images/step5-4.png" alt=""/></p>
+<p>&nbsp;</p>
+<p>Choose the available, running, AVD and click OK</p>
+<p><img src="images/step5-5.png" alt=""/></p>
+<p>Again there should be some &quot;whirring and grinding&quot; and eventually the Hello World app should launch on our AVD virtual device: (If you click the middle home button and scroll the AVD screen up you should see the app installed as well.)</p>
+<p><img src="images/step5-6.png"  alt=""/>&nbsp;</p>
+<p>&nbsp;
+  <img src="images/step5-7.png" alt=""/></p>
+<p>Congratulations you have built your first project from scratch and run it on an AVD. In the upcoming exercises we will examine the code and start adding functionallity to the simple hello world app and learn about Android programming with Java.</p>
+	<hr>
+<p class="segment-header">Part II -A Simple Java Program</p>
+<p>In this second part of the tutorial we want to run a simple java program outside of the android programming environment. This will allow us to do simple java experiments without the problems of being an android application. This will be useful for learning basic java concepts especially the concepts of <span class="black-bold">object-oriented programming</span>.</p>
+<p>For this exercise you need to have the java JDK 1.8 installed on your machine. If necessary review the installation instructions in the course notes.</p>
+<p>&nbsp;</p>
+<p>Create an empty folder somewhere on your machine and open a terminal window at that location. Verify the versions of java and javac by executing <span class="code">java -version</span> and <span class="code">javac -version</span>:</p>
+<p><img src="images/stepP2-1.png" alt=""/></p>
+<p>&nbsp;</p>
+<p>Create two files <span class="code">myMain.java</span> and <span class="code">Song.java</span> by executing <span class="code">touch myMain.java</span> and <span class="code">touch Song.java</span> (<span class="code">touch</span> is a linux terminal command that changes the timestamp of a file and creates the file if it does not exist). List the files in the directory (folder) by executing <span class="code">ls</span>.</p>
+<p><img src="images/stepP2-2.png" width="775" height="139" alt=""/></p>
+<p>Open <span class="code">myMain.java</span> with your favourite text editor (TextEdit on the Mac is fine) and type the following code. <span class="red">(You should actually type it rather than cut and paste as you will learn more about java that way.)</span></p>
+<p><br>
+<pre>
+class myMain {
+   public static void main(String[] args){
+      System.out.println("Hello World");
+
+      Song song = new Song("Girl From Ipanema", "***");
+      System.out.println("Song: " + song.getTitle() + " rating: " + song.getRating());
+      song.setRating("*****");
+      System.out.println("Song: " + song.getTitle() + " rating: " + song.getRating());
+   }
+}
+</pre>
+	<p>Add the following code to <span class="code">Song.java</span>:</p>
+<pre>
+public class Song{
+   
+   //represents a song
+   private String title;  //title of the song
+   private String rating; //"*" ... "*****"
+
+   //constructor
+   public Song(String aSongTitle, String aRating){
+      title = aSongTitle;
+      rating = aRating;
+   }
+   //get and set methods
+   public String getTitle(){return title;}
+   public String getRating(){return rating;}
+   public void setRating(String aRating){
+       rating = aRating;
+   }
+}
+	</pre>
+	<p>
+	To compile the code execute <span class="code">javac myMain.java</span>. You might get errors which you should try to debug and fix. Keep fixing and compiling until you have a "clean compile". At this stage two more files will have been created: <span class="code">myMain.class</span> and <span class="code">Song.class</span>. These are the compiled versions of the .java source code you wrote.</p>
+	<p><img src="images/stepP2-3.png" width="760" height="167" alt=""/></p>
+	<p>&nbsp;</p>
+	<p>To run the program execute <span class="code">java myMain</span></p>
+	<p><img src="images/stepP2-4.png" width="818" height="138" alt=""/></p>
+<p>So now you can write and run simple java programs. Examine the code in this example and see how much of it you understand. Be prepared to ask questions about the parts that you don't. (We are expecting that you are still learning java and that this might be totally new to you.)</p>
+<p>Finally modify the code to add a <span class="code">composer</span> property to the songs and also add a couple more songs to the example.</p>
+<p><span class="red">When you have completed these problems demonstrate your code to  the TA or Prof. to get credit for the tutorial.</span> </p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+</body>
+</html>

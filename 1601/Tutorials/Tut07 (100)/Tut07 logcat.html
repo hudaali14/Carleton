@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>COMP1601</title>
+<link href="template.css" rel="stylesheet" type="text/css" />
+<style>
+body {
+	font-family: arial;
+	margin-left: 80px;
+}
+p {
+	font-size:24px;
+}
+pre {font-size:20px;}
+hr {
+	width: 100%;
+	height: 2px;
+	
+	margin-top:10px;
+	margin-bottom:10px
+}
+.header {
+	text-align: center;
+	font-weight: bold;
+	font-size: 40px;
+	
+	margin-top:0px;
+	margin-bottom:0px;
+	
+	color: rgb(153, 0, 0);
+}
+.subheader {
+	color: #000099;
+	
+	margin-bottom:100px;
+}
+.segment-header {
+	color: rgb(0, 0, 153);
+	font-size: 30px;
+}
+.black-bold {
+	color: rgb(0,0,0);
+	font-weight: bold;
+}
+.glossary-term {
+	font-weight: 700;
+	color: #000099;
+}
+.code {
+	font-family: 'Courier New';
+}
+.comment {
+	color:rgb(0, 128, 0);
+}
+ul li {
+	margin-bottom: 5px;
+	font-size:24px;
+}.red {
+	color: #F00;
+}
+</style>
+</head>
+<body>
+<p class="header">COMP 1601 Winter 2020</p>
+<p class="header subheader">Tut07 -Debugging with Logcat</p>
+<p>&copy; L.D. Nel 2020</p>
+<hr/>
+<p class="red">Revisions:</p>
+<hr/>
+<p class="segment-header">Description</p>
+<p>Android developers say &quot;Logcat is your friend&quot;. In this tutorial we will learn about Logcat -one of Android Studio's most poplular tool windows. It is very helpful for debugging and learning about what is going on with an application's code.</p>
+<p>This tutorial introduces Regular Expressions which are used a lot in all programming. As preparation for this exercise study this online regular expression <a href="https://ryanstutorials.net/regular-expressions-tutorial/">tutorial</a> or look up other resoures. There is also a  handy <a href="https://ryanstutorials.net/regular-expressions-tutorial/regular-expressions-cheat-sheet.php">cheat sheet</a></p>
+<p>&nbsp;</p>
+<p class="red">You need to demonstrate your exercise to the TA or Prof. before you leave the class to get credit for it. If you complete, or make significant progress on the exercise you will get a mark of 2. If you make some progress you will get a mark of 1 and can &quot;upgrade&quot; that mark to a 2 by showing your completed work within one week of this exercise. 0 marks for a no-show or unsufficient progress.</p>
+<hr/>
+<p class="segment-header">Demo Code</p>
+<p>For this tutorial use your answer code from the previous tutorial exercise. Open your project and verify that it runs. It should present some true false questions that the user can answer. When they answer a question it advances to the next question.</p>
+<p>&nbsp;</p>
+<p><img src="images/demo1-1.png" alt=""/></p>
+<p class="red">&nbsp;</p>
+<p class="segment-header">Preliminary: System.out.println()</p>
+<p>Add <span class="code">System.out.println()</span> statements to your two button handlers (it might look something like the following though your handler code will look slightly different:</p>
+	<pre>
+	     mYesButton.setOnClickListener(v -&gt; {
+            //Handle the yes button click
+            System.out.println("Yes Button Clicked");
+            //...
+        });
+        mNoButton.setOnClickListener(v -&gt; {
+            //Handle the no button click
+            System.out.println("No Button Clicked");
+            //...
+        });
+</pre>
+<p>Now run the app and notice when you click on the Yes and No buttons you see the printout in the <span class="black-bold">Run</span> window: </p>
+	<p><img src="images/preliminary1-1.png"  alt=""/></p>
+
+<p>Printing to <span class="code">System.out</span> is a very common technique when debugging java code in general. Android however provides better mechanism though: the Logcat.</p>
+<hr>
+<p></p>
+<p></p>
+<p class="segment-header">Problem 1: Logcat</p>
+<p>We will, in general, print to the Logcat window. Open the Logcat tool, and make sure your device or AVD that you are testing on is selected. Your <span class="code">System.out.println()</span> statements print to the Logcat window as well but there is so much other stuff being printed that you likely won't see the messages. We are going to change the code to write specificaly to the Logcat and also learn how to filter its output so we can choose what we want to see. </p>
+<p>&nbsp;</p>
+<p><img src="images/preliminary1-2.png" width="849" height="316" alt=""/></p>
+<p>&nbsp;</p>
+<p>The benefit of Locat over <span class="code">System.out.println()</span> is that you can apply filtering to control what you see. A lot of information tends to spew out on Logcat so you need to filter to see only what you are interested in.</p>
+<p>To write to Logcat you use: </p>
+<p><span class="code">Log.i(TAG, message);</span></p>
+<p>where <span class="code">i</span> represents information (other options are: <span class="code">d</span> for debug, <span class="code">e</span> for error etc.).<span class="code"> TAG</span> is a string that can be used filter on and <span class="code">message</span> is the information string you want to print out.</p>
+<p>Add the following <span class="code">TAG</span> at the top of your <span class="code">MainActivty</span> class:</p>
+<pre>private&#32;final&#32;String&#32;TAG&#32;=&#32;"1601QuizMainActivity";</pre>
+<p>Replace the <span class="code">System.out.println()</span> calls with the following instead</p>
+<pre>
+	     mYesButton.setOnClickListener(v -&gt; {
+            //Handle the yes button click
+            Log.i(TAG, "Yes Button Pressed");
+            //...
+        });
+        mNoButton.setOnClickListener(v -&gt; {
+            //Handle the no button click
+            Log.i(TAG, "No Button Clicked");
+            //...
+        });
+</pre>
+<p>Set the logcat level to <span class="black-bold">info</span> and choose <span class="black-bold">Show only selected application</span>. This time notice the output of pressing the buttons: you can see the <span class="code">I</span> for info, the <span class="code">TAG</span> and the <span class="code">message</span>. Selecting <span class="black-bold">info</span> at least gets rid of some other messages and restricting output to the <span class="black-bold">selected application</span> helps too. But it may not be enough to spot your button press messages from among all the other messages.</p>
+<p><img src="images/problem1-1.png" alt=""/></p>
+<p>&nbsp;</p>
+<p>Notice however there is a lengthy prefix before the messages. That takes up room and can be annoying. You can turn that off in the Logcat settings menu:</p>
+<p><img src="images/problem1-2.png" alt=""/></p>
+<p>&nbsp;</p>
+<p>Now you will have more room for your messages (but there is probably still too much traffic to spot your own messages from among those that get generated:</p>
+<p><img src="images/problem1-3.png" alt=""/></p>
+<hr>
+<p>&nbsp;</p>
+<p class="segment-header">Problem 2: Basic Filtering</p>
+<p>We can filter the output based on our TAG. Choose <span class="black-bold">Edit Filter Configuration</span> and create a new filter to filter based on our tag at the <span class="black-bold">info</span> level. Below I've called the filter <span class="black-bold">ButtonPresses</span>. Leave the  <span class="black-bold">Regex</span> boxes checked for now. Enter your TAG string's value in the Log Tag: field so that only those messages will be shown.</p>
+<p><img src="images/problem2-1.png" width="916" height="400" alt=""/></p>
+<p>&nbsp;</p>
+<p>Now we can filter based on our TAG. Notice all the extra junk is no longer displayed:</p>
+<p><img src="images/problem2-2.png" width="1263" height="177" alt=""/></p>
+<p>&nbsp;</p>
+<hr>
+<p class="segment-header">&nbsp;</p>
+<p class="segment-header">Problem 3: A Better TAG</p>
+<p>For debugging when apps get more complicated we've found the following TAG to be very useful (and universal: you can add the same TAG statement to each of your classes). Modify your TAG to match:</p>
+<pre>private&#32;&#32;final&#32;String&#32;TAG&#32;=&#32;this.getClass().getSimpleName()&#32;+&#32;"&#32;@"&#32;+&#32;System.identityHashCode(this);
+</pre>
+<p>&nbsp;</p>
+<p>Recompile and run the app. Modify the filtering to use your class name MainActivity as the TAG filter. </p>
+<p><img src="images/problem3-1A.png" width="527" height="275" alt=""/></p>
+<p>&nbsp;</p>
+<p>Now when you run your app you should see something like the following:</p>
+<p><img src="images/problem3-1.png" alt=""/></p>
+<p>&nbsp;</p>
+<p>In this output the class name, <span class="code">MainActivity</span> along with the <span class="black-bold">process id</span> is being displayed as our TAG. In debugging it is often necessary to verify that the output is coming from the process you want to be watching. To demonstrate this do the following:</p>
+<p>1) Run the app with this new TAG and answer a couple of the quiz questions. Notice the button presses in the logcat.</p>
+<p>2) Rotate the AVD to horizontal position. This is a two step process as illustrated below:</p>
+<p><img src="images/problem3-2A.png" width="312" height="536" alt=""/></p>
+<p><img src="images/problem3-2B.png" width="579" height="260" alt=""/></p>
+<p><img src="images/problem3-2C.png" width="567" height="258" alt=""/></p>
+<p>&nbsp;</p>
+<p><span class="black-bold">IMPORTANT:</span> Notice that the quiz question has returned to the first question and when you press the Yes and No buttons now the Logcat is showing a different process ID:</p>
+<p><img src="images/problem3-3.png" alt=""/></p>
+<p>&nbsp;</p>
+<p>Rotate the device back to vertical and notice yet another process ID is used for the running app.</p>
+<p><img src="images/problem3-4.png" alt=""/></p>
+<p>&nbsp;</p>
+<p>This is an  important clue as to what happens when you rotate a device in android: the current activity (process) is killed and a new version started up. In our case the new one went back the first quiz question -can you figure out why? This is probably not desireable and we will figure out how to deal with it as the course progresses. (For  now you could just disable rotation in your app -see if you can figure out how.)</p>
+<hr>
+<p>&nbsp;</p>
+<p class="segment-header">Problem 4: Regex Filtering</p>
+<p>The filtering does not have to be based on just complete strings or substrings. The filtering can use regular expressions (in effect when the <span class="black-bold">Regex</span> check box is checked.). The following online regular expression <a href="https://ryanstutorials.net/regular-expressions-tutorial/">tutorial</a> provides a nice disussions of regular expressions including a handy <a href="https://ryanstutorials.net/regular-expressions-tutorial/regular-expressions-cheat-sheet.php">cheat sheet</a></p>
+<p>For example, the following filter would show only button presses for processes whose ID's contain the substring &quot;434&quot;:</p>
+<p><img src="images/problem4-1.png" width="1103" height="403" alt=""/></p>
+<p>&nbsp;</p>
+<p>Go through the tutorial material on regular expressions and then build a filter that would show only Logcat button presses for processes whose ID ends in a particular 2 digit number and that only shows the No Button presses.</p>
+<hr>
+<p>&nbsp;</p>
+<p class="segment-header">Problem 5: Printing Device Info to Logcat</p>
+<p>Sometimes in debugging it is necessary, or informative, to display on the Logcat information about the real device or AVD that is running your app. Android provides a variety of details that can be accessed by methods provided in the <span class="code">andoid.os.Build</span> class among others.</p>
+<p>For example the following function could provide a lot of details. Implement this method in your <span class="code">MainActivity</span> class and then add a <span class="code">Log.i(TAG, getDeviceInfo());</span> call in your <span class="code">onCreate()</span> method in class <span class="code">MainActivity</span>. (This is our first example of writing java code that involves exception handling which uses the <span class="black-bold">try-catch</span> block structure.)</p>
+<p><img src="images/problem5-1.png" width="804" height="495" alt=""/></p>
+<p>&nbsp;</p>
+<p>When you're done run your app again you should see the device info printed to the logcat:</p>
+<p><img src="images/problem5-2.png" alt=""/></p>
+<p>&nbsp;</p>
+<p><span class="red">When you have completed these problems demonstrate your code to  the TA or Prof. to get credit for the tutorial.</span> </p>
+<p>&nbsp;</p>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+<user>
+    <name> Huda </name>
+    <userid> 1105 </userid>
+    <playlist>
+        <name> Summer Songs </name>
+        <song> 
+            <title> Euphoria </title>
+            <composer> RM </composer>
+            <artist> Jungkook </artist>
+            <rating> "*****" </rating>
+        </song>
+    </playlist>
+</user>

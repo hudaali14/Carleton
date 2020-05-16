@@ -1,0 +1,53 @@
+html 
+    head
+        title  You Want Food? 
+body
+    include ../partials/header
+    
+    h1 Restaurant Info
+    p Restaurant ID: #{restaurant.id}
+    | Restaurant Name: 
+    - let name = restaurant.name
+    input(type= "text", id="restaurantnamepage", value = name) 
+    br
+    br
+    | Restaurant Min Order: 
+    input(type= "text", id="restaurantname") 
+    br
+    br
+    | Delivery Fee: 
+    input(type= "text", id="restaurantname") 
+    br
+    br
+
+    h1 Add Category: 
+    br
+    | Category Name: 
+    input(type= "text", id="restaurantname") 
+    br
+
+    button(type="button", id="submitbutton") Add Category
+
+
+    h1 Add Item: 
+    br
+    | Select Category: 
+    select#dropdown
+    br
+    | Item Name: 
+    input(type= "text", id="restaurantnamepage") 
+    br
+    | Item Description: 
+    input(type= "text", id="restaurantname") 
+    br
+    | Item Price: 
+    input(type= "text", id="restaurantname") 
+    br
+    button(type="button", id="additembutton") Add Item
+    br
+    br
+
+
+
+
+    

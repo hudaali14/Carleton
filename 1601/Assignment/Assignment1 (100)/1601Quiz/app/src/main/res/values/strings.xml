@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">1601 Quiz</string>
+    <string name="a_button_label">A</string>
+    <string name="b_button_label">B</string>
+    <string name="c_button_label">C</string>
+    <string name="d_button_label">D</string>
+    <string name="e_button_label">E</string>
+    <string name="prev_button_label">Prev</string>
+    <string name="next_button_label">Next</string>
+    <string name="submit_button_label">Submit</string>
+    <string name="correct_answer_toast">Congrats! You passed!</string>
+    <string name="wrong_answer_toast">Sorry! You failed! Maybe review some more :/</string>
+    <string name="question_text">What object must be caught in order to end a Quidditch match?\n</string>
+
+
+    <string name="question1">Which statement is true regarding an object?[An object is an instance of a class][An object is what classes instantiated are from][An object is a variable][An object is a reference to an attribute][An object is not an instance of a class]</string>
+    <string name="question2">Object-oriented inheritance models the?[“is a kind of” relationship][has a” relationship][“want to be” relationship][No relationship][“contains” of relationship]</string>
+    <string name="question3">The wrapping up of data and functions into a single unit is called?[Encapsulation][Abstraction][Data Hiding][Polymorphism][HermioneMessage passing]</string>
+    <string name="question4">What language is becoming more popular for Android app development?[Java][Nimbus][Ruby][HTML][Bootstrap]</string>
+    <string name="question5">A package is a collection of?[Classes and interfaces][Interfaces][Editing tools][Classes][Editing tools and interfaces]</string>
+    <string name="question6">Basic Java language functions are stored in which of the following java package?[java.lang][java.io][java.net][java.www][java.util]</string>
+    <string name="question7">What is the size of int variable?[4 bit][16 bit][32 bit][8 bit][1200 bit]</string>
+    <string name="question8">What is an Interface?[AN interface is a collection of abstract methods][Interface is an abstract class][Interface is an concrete][Does not exist][None of the above]</string>
+    <string name="question9">What is the default value of Object variable?[null][undefined][0][not defined][default]</string>
+    <string name="question10">This is the parent of Error and Exception classes[Throwable][Catchable][MainError][MainException][BooBoo]</string>
+
+
+</resources>

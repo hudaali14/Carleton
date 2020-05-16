@@ -1,0 +1,15 @@
+html 
+    head
+        title  You Want Food? 
+        link(rel='stylesheet' href='style.css')
+
+body(onload='init()')
+    include ../partials/header
+
+    h1 Restaurant Stats Summary
+    div
+        h2 Restaurant || # of Orders || Average Order || Most Popular Item
+        each stats in statsinfo
+            h2 #{stats.name} || #{stats.orders} || #{stats.average/stats.orders} || #{stats.popular.name}
+    script(src='/stats.js')
+

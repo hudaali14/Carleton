@@ -1,0 +1,45 @@
+html 
+    head
+        title  You Want Food? 
+body
+    include ../partials/header
+    
+    h1 Profile for #{profile.username}
+    if ownprofile
+        h2 Privacy:
+        input(type="radio" name="privacy" value="On" id="onButton")
+        |  On
+        br
+        input(type="radio" name="privacy" value="Off" id="offButton")
+        |  Off
+        if profile.username == session.username
+            if profile.privacy 
+                script.
+                    document.getElementById("onButton").checked = true;
+            else
+                script.
+                    document.getElementById("offButton").checked = true;
+        br
+        br
+        button(type="button", id="saveButton") Save
+        br
+        br
+        script(src="/user.js")
+
+    if profile.orders.length==0
+        b #{profile.username} had not made an orders
+    else
+        if profile.privacy
+            if ownprofile
+                h2 Orders:
+                each element in profile.orders
+                    a(href="/orders/" + element.id) #{element.id} 
+                    br
+            else
+                b #{profile.username} had not made an orders
+        else
+            h2 Orders:
+            each element in profile.orders
+                a(href="/orders/" + element.id) #{element.id} 
+                br
+    br

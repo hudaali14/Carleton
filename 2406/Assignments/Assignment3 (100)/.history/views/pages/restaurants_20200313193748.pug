@@ -1,0 +1,11 @@
+html 
+    head
+        title  You Want Food? 
+body
+    include ../partials/header
+    
+    h1 Restaurant Pages
+
+    each restaurant in restaurants
+        a(href="/restaurants/" + restaurant.id) #{restaurant.name} 
+        br

@@ -1,0 +1,10 @@
+html 
+    head
+        title  You Want Food? 
+body
+    include ../partials/header
+    
+    each element in users
+        if !element.privacy
+            a(href="/users/" + element._id) #{element.username} 
+            br

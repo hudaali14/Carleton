@@ -1,0 +1,22 @@
+html 
+    head
+        title  You Want Food? 
+        link(rel='stylesheet' href='style.css')
+
+body(onload='init()')
+    include ../partials/header
+
+    h1 Restaurant Stats Summary
+    div
+        h2 Restaurant || # of Orders || Average Order || Most Popular Item
+        each stats in statsinfo
+            script(type="text/javascript")
+                | let popular = &quot;N/A&quot;;
+                | let avg = 0;
+                | if (stats.order &gt; 0) {
+                | popular = stats.popular.name;
+                | let avg = Math.round((stats.average/stats.order) * 100) / 100;
+                | }
+             p #{stats.name} || #{stats.orders} || #{avg} || #{popular}
+    script(src='/stats.js')
+

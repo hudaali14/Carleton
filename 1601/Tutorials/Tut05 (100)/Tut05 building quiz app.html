@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>COMP2601</title>
+<link href="template.css" rel="stylesheet" type="text/css" />
+<style>
+body {
+	font-family: arial;
+	margin-left: 80px;
+}
+p {
+	font-size:24px;
+}
+pre {font-size:20px;}
+hr {
+	width: 100%;
+	height: 2px;
+	
+	margin-top:10px;
+	margin-bottom:10px
+}
+.header {
+	text-align: center;
+	font-weight: bold;
+	font-size: 40px;
+	
+	margin-top:0px;
+	margin-bottom:0px;
+	
+	color: rgb(153, 0, 0);
+}
+.subheader {
+	color: #000099;
+	
+	margin-bottom:100px;
+}
+.segment-header {
+	color: rgb(0, 0, 153);
+	font-size: 30px;
+}
+.black-bold {
+	color: rgb(0,0,0);
+	font-weight: bold;
+}
+.glossary-term {
+	font-weight: 700;
+	color: #000099;
+}
+.code {
+	font-family: 'Courier New';
+}
+.comment {
+	color:rgb(0, 128, 0);
+}
+ul li {
+	margin-bottom: 5px;
+	font-size:24px;
+}.red {
+	color: #F00;
+}
+</style>
+</head>
+<body>
+<p class="header">COMP 1601 Winter 2020</p>
+<p class="header subheader">Tut05 -From XML Layout to Live Java Objects</p>
+<p>&copy; L.D. Nel 2020</p>
+<hr/>
+<p class="red">Revisions:</p>
+<hr/>
+<p class="segment-header">Description</p>
+<p>The purpose of this tutorial is get you working with Java objects that represent the components layed out with XML in the previous tutorials and to start writing java code by building the <span class="black-bold">listeners</span> that listen for clicks on the buttons you layed out previously. Here we take the first steps to bring our application to life.</p>
+<p>This tutorial will also start to introduce the important java concepts that you need to know to build android apps: <span class="black-bold">objects</span>, <span class="black-bold">classes</span>, <span class="black-bold">inheritance</span>, <span class="black-bold">annonymous inner subclasses</span>, and <span class="black-bold">lambda</span> expressions. This is a lot to understand and this tutorial will only be the beginning.</p>
+<p>The tutorial app is based on the GeoQuiz app built in  Chapter 1 of &quot;Android Programming: The Big Nerd Ranch Guide&quot;, 3/e by Bill Phillips, Chris Stewart, and Kristin Marsicano &copy;2017</p>
+<p>If you have trouble with the java parts the recommended book <a href="https://www.amazon.com/Programming-Android-Developers-Dummies-Computer/dp/1119301084/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1514747209&amp;sr=1-1&amp;keywords=java+programming+android">Java Programming for Android Developers</a> has good and lengthy explanations.</p>
+<p>If you have time do the optional part at the end as well (you will need some of this to do the first assignment).</p>
+<p class="red">You need to demonstrate your exercise to the TA or Prof. before you leave the class to get credit for it. If you complete, or make significant progress on the exercise you will get a mark of 2. If you make some progress you will get a mark of 1 and can &quot;upgrade&quot; that mark to a 2 by showing your completed work within one week of this exercise. 0 marks for a no-show or unsufficient progress.</p>
+<hr/>
+<p class="segment-header">Part I: Background<br /></p>
+<p class="segment-header">Demo Code</p>
+<p>Start with your TrueFalseQuiz answer code from the previous tutorial 03. (We've attached our version as the  demo code.) Open that project and verify that it runs. Whenever you open a cut-and-paste copy of another project (like our demo code) always clean the project by executing</p>
+<p class="black-bold">Build-&gt;Clean Project</p>
+<p>and then </p>
+<p class="black-bold">Build-&gt;Rebuilt Project</p>
+<p>otherwise you will likely not be allowed to install the app on an AVD. </p>
+<p>Run the project on an AVD:</p>
+<p><img src="images/demo1-1.png" width="263" height="483" alt=""/></p>
+<p class="red">&nbsp;</p>
+<hr>
+<p class="segment-header">&nbsp;</p>
+<p class="segment-header">Problem 1) The MainActivity class</p>
+<p>In Android Studio open the <span class="code">app/java/com.comp1601.truefalsequiz/MainActivity.java</span> class file:</p>
+<p><img src="images/problem1-1.png"  alt=""/></p>
+<p>&nbsp;</p>
+<p>This is our first java code that we are looking at in this app. Here are some things to observe:</p>
+<p>1) <span class="code">MainActivity</span> is a java class that inherits from, or <span class="code">extends</span>, class <span class="code">AppCompatActivity</span>. Superclass <span class="code">AppCompatActivity</span> provides compatibility support for older versions of Android that is why we subclass it.</p>
+<p>2) Notice the <span class="code">import</span> statements. These make the java classes our code depends on available. You will be adding many <span class="code">import</span> statements as you use classes from both the java language itself and java classes that are part of the android sdk.</p>
+<p>3) Our <span class="code">MainActivity</span> class has an <span class="black-bold">instance method</span> <span class="code">onCreate(Bundle)</span>. This method is called when a <span class="code">MainActivty</span> object is created at application launch. Two things are happening when this method executes: the superclass's version of the same method is given an opportunity to run and second the <span class="code">setContentView(R.layout.activity_main)</span> is called to create the UI layout objects from the <span class="code">activity_main.xml</span> file's content (that you created previously a tutorial).</p>
+<p>This last step is called <span class="black-bold">inflating</span> the layout. It means the XML specification of the component is read and the data used to initialize the actual java <span class="code">View</span> objects that are created. </p>
+<p>Recall our <span class="code">activity_main.xml</span> file looks something like the following:</p>
+<p><img src="images/problem1-2.png" width="1150" height="675" alt=""/></p>
+<p>&nbsp;</p>
+<p>Here are some important observations: </p>
+<p>1)Files in the <span class="black-bold">res</span> section of a project describe resources. Resources are not executable java code. They are things like XML files, images, fonts, audio files etc.</p>
+<p>2) Some of the resources, like the layout, are given ID's when the application is compiled and launched. The resource is then accessed as a property of a class named <span class="code">R</span>. For example in the <span class="code">setContentView(R.layout.activity_main)</span> the layout resource is being accessed by its ID: <span class="code">R.layout.activity_main</span>. which was assigned to it automatically.</p>
+<p>String resources are also assigned ID's. In particular, we could set the title of the app by executing a method: <span class="code">setTitle(R.string.app_name)</span>.</p>
+<p>However UI components are typically NOT assigned an ID automatically. We have to do that ourselves if we want to access them from the java code. In this case our <span class="code">TextView</span> and <span class="code">Button</span> resources will NOT have been assigned an ID. Assign ID's to the buttons using an android:id XML attribute as follows:</p>
+<p class="code">android:id=&quot;@+id/yes_button&quot;<br>
+android:id=&quot;@+id/no_button&quot;</p>
+<p>Also notice the text label associated with the <span class="code">Button</span> XML is hard-coded, yet we had created XML string resources to represent them. Change this as follows:</p>
+<p class="code">android:text=&quot;@string/yes_button_label&quot;<br>
+android:text=&quot;@string/no_button_label&quot;</p>
+<p>So our layout XML should look like this now:</p>
+<p><img src="images/problem1-3.png" width="601" height="237" alt=""/></p>
+<p>In the above code XML code the <span class="code">@</span> symbol means we are referring to an id. The <span class="code">@+id</span> means we are actually creating the id (hence the <span class="code">+</span> sign) whereas the <span class="code">@string/yes_button_label</span> means we are referring to an already existing string id.</p>
+<p>With these ID's in place we can  now refer to these <span class="code">Button</span> layouts from within the java code which we will do next.</p>
+<p>&nbsp;</p>
+<hr>
+<p class="segment-header">Problem 2) Creating Member Variables for our View Objects</p>
+<p>Add two member variables to the <span class="code">MainActivity</span> class to represent the buttons:</p>
+<p class="code">private Button mYesButton;<br>
+private Button mNoButton;</p>
+<p>So the <span class="code">MainActivity</span> class should look something like this:</p>
+<p><img src="images/problem2-1.png" width="610" height="317" alt=""/></p>
+<p>&nbsp;</p>
+<p>Here are some observations:</p>
+<p>1) Many use the convention of starting the name of class instance, or member, variables with the lower-case <span class="code">m</span> prefix. We will do the same but it is not strictly necessary.</p>
+<p>2) The Button class is likely red to warn us that the class is unknown at this point. If you hover over the red Button text you will likely see the following:</p>
+<p><img src="images/problem2-2.png" width="575" height="130" alt=""/></p>
+<p>That is because we don't yet have the <span class="code">import</span> statement that makes class <span class="code">Button</span> available to our code. We could just add the following import statement:</p>
+<p class="code">import android.widget.Button;</p>
+<p>However Android Studio tries to help out by providing a shortcut to do this -which you will probably use often. </p>
+<p>If you click on the red <span class="code">Button</span> text you will likely see: </p>
+<p><img src="images/problem2-3.png" width="565" height="91" alt=""/></p>
+<p>And if you press  Option+Return (or Alt+Enter) the import statement will be added for you:</p>
+<p><img src="images/problem2-4.png" width="586" height="291" alt=""/></p>
+<p>&nbsp;</p>
+<p>We now have variables of class <span class="code">Button</span> that can refer to the view we plan to inflate from the XML specification of the buttons.</p>
+<p>&nbsp;</p>
+<hr>
+<p class="segment-header">&nbsp;</p>
+<p class="segment-header">Problem 3) Inflating the Buttons</p>
+<p>Our <span class="code">MainActivity</span> class inherits an <span class="code">Activity</span> method:</p>
+<p class="code">public View findViewById(int id)</p>
+<p>That will produce a <span class="code">View</span>-subclass object from the XML resource data identified by the <span class="code">int id</span>. We will use this to create a java <span class="code">Button</span> and initialize our java member variables in the <span class="code">onCreate()</span> method of our <span class="code">MainActivity</span> class. Add the following two lines of code to the <span class="code">onCreate()</span> method:</p>
+<p class="code">mYesButton = (Button) findViewById(R.id.yes_button);<br>
+  mNoButton  = (Button) findViewById(R.id.no_button);
+</p>
+<p class="code">&nbsp;</p>
+<p><img src="images/problem3-1.png" width="701" height="261" alt=""/></p>
+<p>In the above example  <span class="code">(Button) findViewById(...)</span> expression means we are <span class="black-bold">casting</span> the result of <span class="code">findViewById(...)</span> to be a <span class="code">Button</span> object. Recently improvements to java and android studio have made these casts redundant -so lets deal with that.</p>
+<p>If you click on the <span class="code">(Button)</span> part of the expression you will likely see</p>
+<p><img src="images/problem3-1B.png" width="523" height="172" alt=""/></p>
+<p>If you click on the lightbulb icon is will offer a fix to remove the redundancy:</p>
+<p><img src="images/problem3-1C.png" width="542" height="177" alt=""/></p>
+<p>Choose that option to remove the redundant cast and do the same for the other button as well.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr>
+<p class="segment-header">&nbsp;</p>
+<p class="segment-header">Problem 4) Adding Listeners</p>
+<p>The Android architecture uses event-driven programming. That means that we add <span class="black-bold">listener</span> code to components, like buttons, that will run when the event they are listening for happens (e.g. the button is clicked). </p>
+<p>Here we are going to add listeners to our inflated <span class="code">Button</span> objects. The syntax will seem a bit odd and we will explain that shortly.</p>
+<p>Add the following code to attach an <span class="code">onClick()</span> listeners to the buttons:</p>
+<p><img src="images/problem4-1.png" width="709" height="617" alt=""/></p>
+<p>&nbsp;</p>
+
+<p>The syntax is a bit tricky. We are setting the button's <span class="code">OnClickListener</span> to be an instance (i.e. object) of a class created from the <span class="code">View.OnclickListener</span> <span class="black-bold">interface</span> by implementing it's only interface method: <span class="code">onClick(View v)</span>.</p>
+<p>If you want to see this <span class="code">interface</span> click on the <span class="code">View.OnClickListener()</span> text, right click and select <span class="black-bold">Go To-&gt;Declaration</span>:</p>
+<p>&nbsp;</p>
+<p><img src="images/problem4-2.png" width="1095" height="613" alt=""/></p>
+<p>&nbsp;</p>
+<p>It will show how <span class="code">View.OnClickListener</span> is defined:</p>
+<p><img src="images/problem4-3.png" width="818" height="199" alt=""/></p>
+<p>An <span class="code">interface</span> in java is a class-like thing that only specifies method signatures that must be implemented. </p>
+<p>Our listener syntax above uses an <span class="black-bold">anonymous inner subclass</span> in java. If you have trouble understanding this google that term and you should come across various explanations. These are used a lot in Android programming for event handling (ask questions in class if you don't understand this.) </p>
+<p>What we have done at this point is to create methods that will run when the buttons are clicked. Right now they won't do anything but we will get them to generate some output next.</p>
+<p>&nbsp;</p>
+<hr>
+<p class="segment-header">&nbsp;</p>
+<p class="segment-header">Problem 5) Making Toasts</p>
+<p>Android has a simple pop-up message called a <span class="black-bold">Toast</span>. (Like raising your glass and making a toast.) We want to make a toast when you click on a button.</p>
+<p>To keep in good programming form we will first add XML string resources to use as our toast messages. Add the following XML string resources:</p>
+<p class="code">&lt;string name=&quot;correct_answer_toast&quot;&gt;Correct&lt;/string&gt;<br>
+  &lt;string name=&quot;wrong_answer_toast&quot;&gt;Wrong!&lt;/string&gt;
+	</p><p>And while you are at it change the question text to be something like "Is Java an Object-Oriented Language?"</p>
+	<p><img src="images/problem5-1.png" width="823" height="157" alt=""/></p>
+<p>&nbsp;</p>
+<p>To make a toast you call the following Activity method:</p>
+<p class="code">public static Toast makeText(Context context, int resID, int duration)</p>
+<p><span class="code">static</span> means the method will be invoked on a class and not an object. <span class="code">Context</span> is typically the <span class="code">Activity</span> object in which the code occurs (<span class="code">Activity</span> is a subclass of <span class="code">Context</span>). The <span class="code">duration</span> parameter is one of two <span class="code">Toast</span> constants that specify how long the toast should be visible on screen.</p>
+<p>To make a toast you create a Toast instance with <span class="code">Toast.makeText(...)</span> and the execute it's <span class="code">show()</span> method:</p>
+<p><img src="images/problem5-2.png" width="696" height="517" alt=""/></p>
+<p>&nbsp;</p>
+<hr>
+<p class="segment-header">&nbsp;</p>
+<p class="segment-header">Problem 6) Run the App</p>
+<p>Run the app on an AVD and observe that when you  click a button you see the corresponding toast:</p>
+<p>&nbsp;</p>
+<p><img src="images/problem6-1.png" width="263" height="483" alt=""/></p>
+<p class="segment-header">&nbsp;</p>
+	<p><span class="red">When you have completed these problems demonstrate your code to  the TA or Prof. to get credit for the tutorial.</span> </p>
+<p>&nbsp;</p>
+<p class="segment-header">Optional 1) Manipulating String Resources</p>
+<p>In the previous problem our toast message was a string obtained using its integer resource id. Sometimes you will want to get the actual string, manipulate it a bit, and then toast with the resulting text string (not an integer). Modify the code as shown below. This time we are first obtaining a string and then writing it to <span class="code">System.out</span> and also using it for the toast message. Run the code and notice the toast is now actually the label of the button we pressed. Also notice the message being printed out on the <span class="black-bold">run</span> window as a result of the <span class="code">System.out.println()</span> java expression. This can be very helpful for simple debugging. </p>
+<p>&nbsp;</p>
+<p><img src="images/optional.png" width="732" height="488" alt=""/></p>
+
+<p class="segment-header">Optional 2) Lambda Expressions</p>
+<p>Java 1.8.x has a convenient short form for representing the listeners we have built out of annonymous inner subclasses in our java code. They allow you to replace the following code:</p>
+<pre>
+	   mYesButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                //Handle the yes button click
+                String s = getString(R.string.yes_button_label);
+                System.out.println("YOU PRESSED " + s );
+                Toast.makeText(MainActivity.this,
+                        s,
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
+	</pre>
+<p>with the following (Lambda Expression) instead:</p>
+<pre>
+        mYesButton.setOnClickListener(v -&gt; {
+            //Handle the yes button click
+            String s = getString(R.string.yes_button_label);
+            System.out.println("YOU PRESSED " + s );
+            Toast.makeText(MainActivity.this,
+                    s,
+                    Toast.LENGTH_SHORT).show();
+        });
+
+	</pre>
+<p>To allow this you have to ensure that the language level is set to java 1.8. You can set this in the dialog at <span class="black-bold">File-&gt;Project Structure</span>:</p>
+<p><img src="images/options2-1.png" alt=""/></p>
+<p>&nbsp;</p>
+<p>With this 1.8 compatibility set if you now hover your mouse over the <span class="code">new View.OnClickListener()</span> expression you should see an option to change the code to the Lambda expression (you could also code it manually):</p>
+<p><img src="images/optional2-2.png" width="833" height="145" alt=""/></p>
+<p>&nbsp;</p>
+<p>If you press Option+Return (Alt+Enter) Android Studio again offers to replace the code with the appopriate Lambda expression:</p>
+<p>&nbsp;</p>
+<p><img src="images/optional2-3.png" width="599" height="139" alt=""/></p>
+<p>&nbsp;</p>
+<p>The code using Lambda expressions would now look like below. <span class="red">You don't have to use Lambda expression in the course if you don't want to but it is more and more likely that you will see them when looking at online code examples.</span></p>
+<p>&nbsp;</p>
+<p><img src="images/optional2-4.png" width="686" height="572" alt=""/></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+</body>
+</html>

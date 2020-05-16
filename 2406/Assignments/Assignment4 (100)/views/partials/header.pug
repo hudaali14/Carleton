@@ -1,0 +1,27 @@
+div#header
+	if session.loggedin
+		a(href="/") Home
+		| 
+		a(href="/users") Users
+		| 
+		a(href="/orders") Order Page
+		| 
+		a(href="/users/" + session.user_id) User Profile
+		| 
+		a(href="/logout") Log Out
+		| 
+		br 
+		br
+		| LOGGED IN AS: #{session.username}
+		br
+		br
+	else
+		a(href="/") Home
+		| 
+		a(href="/users") Users
+		| 
+		a(href="/register") Register
+		| 
+		br
+		br
+	

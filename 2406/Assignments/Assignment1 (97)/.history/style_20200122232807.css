@@ -1,0 +1,20 @@
+#header{
+    width: 870px;
+    height: 150px;
+    margin: 0px;
+    padding: 20px;
+    border: 0px;
+    text-align: center;
+    background-color: mistyrose;
+    color: ;
+}
+
+#categories{
+    width: 290px;
+    height: 600px;
+    background-color: lemonchiffon;
+}
+
+body{
+    margin : 0;
+}

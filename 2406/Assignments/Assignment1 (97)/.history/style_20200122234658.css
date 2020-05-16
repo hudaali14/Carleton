@@ -1,0 +1,27 @@
+#header{
+    width: 1450px;
+    height: 150px;
+    margin: 0px;
+    padding: 20px;
+    border: 0px;
+    text-align: center;
+    background-image: linear-gradient(to bottom right, aquamarine, rgb(36, 168, 129));
+    color: ivory;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+#categories{
+    width: 400px;
+    height: 600px;
+    background-color: lemonchiffon;
+}
+
+#display{
+    width: 400px;
+    height: 600px;
+    background-color: palegreen;
+}
+
+body{
+    margin : 0;
+}

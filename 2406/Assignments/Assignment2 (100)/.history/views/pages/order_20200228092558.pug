@@ -1,0 +1,20 @@
+html 
+    head
+        title  You Want Food? 
+        link(rel='stylesheet' href='style.css')
+body(onload='init()')
+    include ../partials/header
+
+    div#headerMain
+        h1 You Want Food NOW?
+        div#headerBox
+            div#dropdownText
+                p Please select a restaurant to order from
+            select#dropdown
+            p#requirements
+    div#main
+    div#box
+        div#categories
+        div#items
+        div#itemsOrdered
+    script(src='/client.js')

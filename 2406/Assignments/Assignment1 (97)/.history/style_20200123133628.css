@@ -1,0 +1,37 @@
+#header{
+    width: 1400px;
+    height: 150px;
+    margin: 0px;
+    padding: 20px;
+    border: 0px;
+    text-align: center;
+    background-color: mistyrose;
+    color: ivory;
+    text-shadow: 2px 2px 4px #000000;
+    font-family: 'Lucida Sans';
+}
+
+#categories{
+    width: 400px;
+    height: 600px;
+    background-color: lemonchiffon;
+    overflow: auto;
+    display: inline-block;
+    border: 0px;
+    margin: 0px;
+}
+
+#display{
+    width: 600px;
+    height: 600px;
+    background-color: palegreen;
+    display: inline-block;
+    border: 0px;
+    margin: 0px;
+}
+
+
+
+body{
+    margin : 0;
+}

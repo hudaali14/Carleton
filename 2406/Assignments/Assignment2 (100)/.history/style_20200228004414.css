@@ -1,0 +1,137 @@
+#headerBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#dropdownText{
+    display: flex;
+    flex-direction: column;
+}
+
+#dropdown{
+    width: 60%;
+}
+
+#requirements{
+    margin: 0px;
+    align-self: flex-start;
+}
+
+
+#main{
+    margin: auto;
+    width: 1050px;
+    text-align: left;
+    display: flex;
+    flex-flow: column;
+    background-color: lightblue;
+}
+
+#box{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    align-content: center;
+}
+
+#categories{
+    background-color: lightgray;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    width: 190px;
+    align-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: fantasy;
+
+}
+
+#items{
+    background-color:lightblue ;
+    color: black;
+    width: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: fantasy;
+}
+
+.categoryItems{
+    display: flex;
+    justify-content: space-between;
+}
+
+.categoryName{
+    text-align: center;
+}
+
+button{
+    align-self: baseline;
+}
+
+#itemsOrdered{
+    background-color: silver;
+    color: black;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    font-family: fantasy;
+}
+
+.image{
+    width: 20px;
+    height: 20px;
+}
+
+#totalPrice{
+    text-align: center;
+}
+
+body{
+    margin : 0;
+}
+
+.links{
+    text-decoration: none;
+    color: black;
+    margin: 10px;
+}
+
+.links:visited{
+    text-decoration: none;
+    color: black; 
+}
+
+.links:hover{
+    color: dodgerblue;
+}
+
+.categoryBox{
+    display: flex;
+    flex-direction: column;
+    width: 190px;
+    align-content: center;
+    position: fixed;
+}
+
+#submit{
+    width: 70%;
+    align-self: center;
+}
+
+#welcome{
+    text-align: center;
+    font-family: "Stencil Std", "fantasy";
+    text-shadow: 1px 1px 2px grey;
+}
+
+#intro{
+    margin: auto;
+    padding: 1%;
+    width: 1000px;
+    height:150px;
+    text-shadow: 1px 1px 1px grey;
+}

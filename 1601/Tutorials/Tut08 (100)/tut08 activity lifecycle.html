@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>1601tut</title>
+<link href="template.css" rel="stylesheet" type="text/css" />
+<style>
+body {
+	font-family: arial;
+	margin-left: 80px;
+}
+p {
+	font-size:24px;
+}
+pre {font-size:20px;}
+hr {
+	width: 100%;
+	height: 2px;
+	
+	margin-top:10px;
+	margin-bottom:10px
+}
+.header {
+	text-align: center;
+	font-weight: bold;
+	font-size: 40px;
+	
+	margin-top:0px;
+	margin-bottom:0px;
+	
+	color: rgb(153, 0, 0);
+}
+.subheader {
+	color: #000099;
+	
+	margin-bottom:100px;
+}
+.segment-header {
+	color: rgb(0, 0, 153);
+	font-size: 30px;
+}
+.black-bold {
+	color: rgb(0,0,0);
+	font-weight: bold;
+}
+.glossary-term {
+	font-weight: 700;
+	color: #000099;
+}
+.code {
+	font-family: 'Courier New';
+}
+.comment {
+	color:rgb(0, 128, 0);
+}
+ul li {
+	margin-bottom: 5px;
+	font-size:24px;
+}.red {
+	color: #F00;
+}
+</style>
+</head>
+<body>
+<p class="header">COMP 1601 Winter 2020</p>
+<p class="header subheader">Tut09 Android Activity Lifecyle</p>
+<p>&copy; L.D. Nel 2020</p>
+<hr />
+<p class="red">Revisions -none yet</p>
+<hr />
+<p class="segment-header">Description:</p>
+<p>The purpose of this exercise is to learn about the activity lifecycle of Android activities. This knowledge is essential to proceed with building applications that involve more than one activity, or screen, or applications that allow the user to rotate the screen.</p>
+<p class="red">You need to demonstrate your exercise to the TA or Prof. before you leave the class to get credit for it. Marks: 2 or completion, 1 for partial progress, 0 for no show or no progress. (A mark of 1 can be upgraded to 2 is show us your completed work within one week of this exercise.)</p>
+<hr/>
+<p class="segment-header">Instructions:<br />
+</p>
+<p class="segment-header"><span class="black-bold">Background:</span></p>
+<p><span class="black-bold">Acitivties</span> in android go through a lifecycle as a result of having lifecyle methods invoked on them by the android operating system. Methods such as <span class="code">onCreate()</span>, <span class="code">onPause()</span>, <span class="code">onResume()</span> etc. The  lifecycle of <a href="https://developer.android.com/guide/components/activities/index.html"><span class="code">Activity</span></a> instances is described <a href="https://developer.android.com/guide/components/activities/activity-lifecycle.html">here</a> and a picture of the life cycle is as follows:</p>
+<p>&nbsp;</p>
+<p><img src="images/lifecycle.png" width="688" height="302" alt=""/></p>
+<p>In addition a <a href="https://developer.android.com/reference/android/os/Bundle.html"><span class="code">Bundle</span></a> <span class="code">savedInstanceState</span> often accompanies these methods which allows the activities to save their state when being paused, or stopped, and recover their state when being resumed. Bundles are used to pass data to a new activity. We will explore using these in the next tutorial. Think of Bundles as a general purpose data structure that can be used to pass whatever data you want between activities.</p>
+<p>&nbsp;</p>
+<p class="segment-header"><span class="black-bold">Demo Code</span></p>
+<p>Open and run the project in the <span class="code">demo_code</span> folder. It is essentially the answer code from the previous tutorial which is the Quiz application but now has Logcat output capability built in. (Feel free to use your own answer code from the previous tutorial if you prefer.) Verify that it runs: </p>
+<p class="code"><img src="images/demo1-1.png" width="262" height="481" alt=""/></p>
+<p class="segment-header">&nbsp;</p>
+<p class="segment-header">Problem 1) Logcat setup</p>
+<p>Put a Logcat output in the onCreate() method that verifies that the method has run.</p>
+<pre>Log.i(TAG,&#32;"onCreate()");
+</pre>
+<p>Set up a Logcat filter called <span class="black-bold">LifeCycle Methods</span> to show only our <span class="code">MainActivity</span> logs and only messages that start with the substring &quot;on&quot; like in &quot;onCreate()&quot;. If necessary review using regular expressions (from the last tutorial) here: <a href="https://ryanstutorials.net/regular-expressions-tutorial/">regex tutorial</a> or the handy <a href="https://ryanstutorials.net/regular-expressions-tutorial/regular-expressions-cheat-sheet.php">cheat sheet</a>. (Hint: use the ^ anchor tag in the regular expression to specify the start of the message string.) Here is what worked for me:</p>
+<p><img src="images/problem1-0.png" width="631" height="268" alt=""/></p>
+<p>&nbsp;</p>
+<p>When you've completed this you should be able to just see the &quot;onCreate()&quot; on the logcat when you start the application:</p>
+<p><img src="images/problem1-1.png" width="1183" height="229" alt=""/></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr>
+<p class="segment-header">&nbsp;</p>
+<p class="segment-header">Problem 2) All the Lifecycle Methods</p>
+<p>Visit the android developer documentation site that describes the <a href="https://developer.android.com/guide/components/activities/index.html"><span class="code">Activity</span></a> and   <a href="https://developer.android.com/guide/components/activities/activity-lifecycle.html">activity lifecyle</a> and observe the following methods that make up the lifecyle transistions:</p>
+<ul>
+  <li>onCreate()</li>
+  <li>onStart()</li>
+  <li>onResume()</li>
+  <li>onPause()</li>
+  <li>onStop()</li>
+  <li>onDestroy()</li>
+</ul>
+<p>Study the method signatures and java details of these methods by studying the documentation links. For example for onCreate():</p>
+<p><img src="images/problem2-1.png" width="1049" height="443" alt=""/></p>
+<p>&nbsp;</p>
+<p>Now look at the implementation of our onCreate() method in MainActivity and observe the following structure:</p>
+<pre>@Override<br>protected&#32;void&#32;onCreate(Bundle&#32;savedInstanceState)&#32;{<br>&#32;&#32;&#32;&#32;super.onCreate(savedInstanceState);<br>&#32;&#32;&#32;&#32;//...<br>&#32;&#32;&#32;&#32;Log.i(TAG,&#32;"onCreate()");
+    //...
+
+ }</pre>
+<p>Notice the following</p>
+<ul>
+  <li>the <span class="code">@Override</span> annotation</li>
+  <li><span class="code">super.onCreate()</span> is called as the first method statement</li>
+  <li>our Logcat statement.</li>
+</ul>
+<p>The <span class="code">@Override</span> annotation is a &quot;smart&quot; comment that tells the compiler we are overriding a superlcass method (an inherited method). The code would work without the annotation but with the annotation there the compiler checks that the superclass actually has such a method and would warn us if there was not. This can catch a lot of bugs where you intend to override a method but spell the name of it wrong or have different parameters and you are in effect creating a brand new (non-overriding) method. So always use this annotation in your code if you are intending to override an inherited method. In java programing they often talk about <span class="black-bold">overriding</span> a method and <span class="black-bold">overloading</span> a method. What is the difference?</p>
+<p>The <span class="code">super.onCreate()</span> gives the superclass an chance to run its version of the method first (that's why its important that this be the first statement.) Also notice the <span class="code">Bundle</span> argument passed into <span class="code">onCreate()</span> is used in the <span class="code">super.onCreate()</span> call. It is very important the superclass method has a opportunity to see this argument as well. In java programming they talk about method <span class="black-bold">parameters</span> and method <span class="black-bold">arguments</span>. Again, what is the difference?</p>
+<p>Finally we have our Logcat statement.</p>
+<p>For this problem implement in <span class="code">MainActivity</span> a version of all the other <span class="black-bold">lifecyle</span> methods. These implementations should do nothing more than the steps above. We are just catching them and outputing that they ran. What they actually do is handled by the super.method call. Here is what the <span class="code">onStart()</span> implementation  might look like: (Notice they don't all have the same parameters.)</p>
+<pre>@Override<br>protected&#32;void&#32;onStart(){<br>&#32;&#32;&#32;&#32;super.onStart();<br>&#32;&#32;&#32;&#32;Log.i(TAG,&#32;"onStart()")&#32;;<br>}</pre>
+<p>Also if the method takes a parameter then make the type of the parameter part of the logcat output message. For example <span class="code">onCreate(Bundle savedInstanceState)</span> takes a <span class="code">Bundle</span> parameter. So change its log statement to <span class="code">Log.i(TAG, &quot;onStart(Bundle)&quot;</span>. Do the same for all the other methods as well.</p>
+<p>When you are done. Clear the logcat and restart your app and with the appropriate filtering observe the lifecycle transitions that the app goes through:</p>
+<p><img src="images/problem2-2.png" width="471" height="141" alt=""/></p>
+<p>&nbsp;</p>
+<p>Study the documention on the Android activity lifecyles and explain why those are the lifecycle method calls that you would expect to see.</p>
+<p>In the next few problems we will ask you do perform inputs and we want you to observe what affect that has on the lifecyle methods that get called. Then be prepared to explain why those make sense. Also pay attention to whether the process ID in the logcat ever changes. If it does it means you are dealing with a different instance of Activity.</p>
+<p>&nbsp;</p>
+<hr>
+<p class="segment-header">&nbsp;</p>
+<p class="segment-header">Problem 3)</p>
+<p>Clear the logcat and restart the application. Now hit the back button on the device. Then relaunch the app from the home screen. Explain the logcat output that results.</p>
+<p>&nbsp;</p>
+<p><img src="images/problem3-1.png" width="219" height="402" alt=""/>&nbsp;&nbsp;<img src="images/problem3-2.png" width="219" height="402" alt=""/>&nbsp;&nbsp;<img src="images/problem3-3.png" width="219" height="402" alt=""/></p>
+<p class="segment-header">&nbsp;</p>
+<hr>
+<p class="segment-header">&nbsp;</p>
+<p class="segment-header">Problem 4)</p>
+<p>Again clear the logcat, re-run the app from Android Studio. This time press the recents button to reveal the recent apps tabs and select the 1601Quiz app again. Explain the logcat output that results. There is something significantly differerent in this scenario compared to problem 3 above. What it that difference? </p>
+<p>[Is it different if you hit the home button, swipe up to reveal the installed apps and relaunch the 1601Quiz app. Does that resemble problem 4 or problem 3?]</p>
+<p>&nbsp;</p>
+<p><img src="images/problem4-1.png" width="219" height="402" alt=""/>&nbsp;&nbsp;<img src="images/problem4-2.png" width="219" height="402" alt=""/>&nbsp;&nbsp;<img src="images/problem4-3.png" width="219" height="402" alt=""/></p>
+<p>&nbsp;</p>
+<hr>
+<p class="segment-header">&nbsp;</p>
+<p class="segment-header">Problem 5)</p>
+<p>Again clear the logcat, re-run the app from Android Studio. This time answer a couple of quiz questions then rotate the device screen from portrait to landscape and then back to portrait. What do you observe about the app behaviour. Explain the logcat output that results.</p>
+<p>&nbsp;</p>
+	<p><img src="images/problem5-2B.png" alt="" width="215" height="369"/>&nbsp;&nbsp;</p>
+<p>
+<img src="images/problem5-2C.png" alt="" width="379" height="170"  />&nbsp;&nbsp;
+<img src="images/problem5-2A.png" alt="" width="380" height="203" />&nbsp;&nbsp;
+</p>
+<p>&nbsp;</p>
+<p>This last example should reveal a significant problem. How many actual activities were involved? The behaviour of the app in this situation is not desireable (the questions reset to the start.) What explanation does the logcat provide about why this is happening. In the next tutorial we will build a solution that accomodates rotations.</p>
+
+<p><span class="red">When you have completed these problems demonstrate your code to  the TA or Prof. to get credit for the tutorial.</span> </p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+</body>
+</html>

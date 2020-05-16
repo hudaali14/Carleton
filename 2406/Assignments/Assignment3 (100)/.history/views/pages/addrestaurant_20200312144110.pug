@@ -1,0 +1,15 @@
+html 
+    head
+        title  You Want Food? 
+body
+    include ../partials/header
+    
+    h1 Add Restaurant
+    div 
+        | Restaurant Name: 
+        input(type= "text", id="restaurantname")
+        | Delivery Fee: 
+        input(type= "text", id="deliveryfee")
+        | Minimum Order: 
+        input(type= "text", id="minimumorder")
+        button(type="button", id="submitbutton") Submit

@@ -1,0 +1,19 @@
+html 
+    head
+        title  You Want Food? 
+body
+    include ../partials/header
+    
+    h1 Order ##{order.id}
+
+    p Restarant Name: #{order.name}
+    p Placed by: #{username}
+    br
+    p Order Contents:
+    each item in order.order
+        p #{item.name} x#{item.amount}
+    br    
+    p Subtotal: $#{order.subtotal}
+    p Delivery Fee: $#{order.fee}
+    p Tax: $#{order.tax}
+    p Total: $#{order.total}

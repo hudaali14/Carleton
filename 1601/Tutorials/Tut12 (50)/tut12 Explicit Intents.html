@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>COMP1601</title>
+<link href="template.css" rel="stylesheet" type="text/css" />
+<style>
+body {
+	font-family: arial;
+	margin-left: 80px;
+}
+p {
+	font-size:24px;
+}
+pre {font-size:20px;}
+hr {
+	width: 100%;
+	height: 2px;
+	
+	margin-top:10px;
+	margin-bottom:10px
+}
+.header {
+	text-align: center;
+	font-weight: bold;
+	font-size: 40px;
+	
+	margin-top:0px;
+	margin-bottom:0px;
+	
+	color: rgb(153, 0, 0);
+}
+.subheader {
+	color: #000099;
+	
+	margin-bottom:100px;
+}
+.segment-header {
+	color: rgb(0, 0, 153);
+	font-size: 30px;
+}
+.black-bold {
+	color: rgb(0,0,0);
+	font-weight: bold;
+}
+.glossary-term {
+	font-weight: 700;
+	color: #000099;
+}
+.code {
+	font-family: 'Courier New';
+}
+.comment {
+	color:rgb(0, 128, 0);
+}
+ul li {
+	margin-bottom: 5px;
+	font-size:24px;
+}.red {
+	color: #F00;
+}
+</style>
+</head>
+<body>
+<p class="header">COMP 1601 Winter 2020</p>
+<p class="header subheader">Tut12 -Explicit Intents</p>
+<p>&copy; L.D. Nel 2020</p>
+<hr/>
+<p class="red">Revisions:</p>
+<hr/>
+<p class="segment-header">Description</p>
+<p>In this tutorial we will explore Android's notion of <span class="black-bold">Explicit Intents</span> and provide a second activity to interact with the main activity.</p>
+<div></div>
+<p class="red">You need to demonstrate your exercise to the TA or Prof. before you leave the class to get credit for it. If you complete, or make significant progress on the exercise you will get a mark of 2. If you make some progress you will get a mark of 1 and can &quot;upgrade&quot; that mark to a 2 by showing your completed work within one week of this exercise. 0 marks for a no-show or unsufficient progress.</p>
+<hr/>
+<p class="segment-header">Demo Code</p>
+<p>Open the project in the <span class="code">demo_code</span> folder, clean it, rebuild it, and the veryify that it runs. (This demo code is essentially the answer code from the last tutorial so feel free to use your own answer code if you prefer.)</p>
+<p>&nbsp;</p>
+<p><img src="images/demo1-1.png" width="227" height="371" alt=""/>&nbsp;&nbsp;&nbsp;
+	<img src="images/demo1-2.png" width="244" height="366" alt=""/>&nbsp;&nbsp;&nbsp;
+	<img src="images/demo1-3.png" width="206" height="367" alt=""/></p>
+<p>&nbsp;</p>
+<p>What we really want in this application is for the calculation of tip and tax to happen on a different screen (in a different activity)<span class="black-bold"></span>. In this tutorial we will look at the following:</p>
+<ul>
+  <li>Creating a new activity and layout for it</li>
+  <li>Starting the new activity from our existing main activity</li>
+  <li>Passing data to the new activity</li>
+  <li>Returning data from the new activity back to the main activity</li>
+</ul>
+<p>Many android applications work like this and you want to be able to adopt the approach in your own designs.</p>
+<p>&nbsp;</p>
+<hr>
+<p class="segment-header">&nbsp;</p>
+<p class="segment-header">Problem 1: Tip N Tax Calculator Activity</p>
+<p>Imagine we want an activity that in which we can do the tip and tax calculation and in which we can make some alterations to the tip rate<span class="black-bold"></span>. Suppose want the following components on the new activity screen:</p>
+<p><img src="images/problem1-1.png"  alt=""/></p>
+<p>Start by defining string constants the you think you might need as for example below. Note the use of comments in the XML. This will become more and more important as you code grows.</p>
+<p><img src="images/problem1-2.png" width="739" height="405" alt=""/></p>
+<p>&nbsp;</p>
+<hr>
+<p class="segment-header">&nbsp;</p>
+<p class="segment-header">Problem 2: Building a new Activity<span class="code"></span></p>
+<p>Building a new activity involves three files: the java source file for the activity, an XML layout file, and a modification to the application manifest file. These can be manipulated manually but if done incorrectly Android Studio can get &quot;upset&quot;. It is easier to start the process with Android Studio's <span class="black-bold">New Activity Wizard</span>.</p>
+<p>Launch the New Activity Wizard by right clicking on you java source package and choosing <span class="black-bold">New-&gt;Activity-&gt;Empty Activity</span>:</p>
+<p><img src="images/problem2-1.png" width="1280" height="711" alt=""/></p>
+<p>&nbsp;</p>
+<p>Name the new activity <span class="code">TipCalcActivity</span>. Make sure other fields are set as in the image below:</p>
+<p><img src="images/problem2-2.png" width="800" height="787" alt=""/></p>
+<p>&nbsp;</p>
+<p>You should now have a second activity:</p>
+<p><img src="images/problem2-3.png"  alt=""/></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Next layout the user interface for the new activity and assign the correct string resource constants:</p>
+<p><img src="images/problem2-4.png" width="534" height="435" alt=""/></p>
+<p>&nbsp;</p>
+<hr>
+<p>&nbsp;</p>
+<p class="segment-header">Problem 3: The Application Manifest File</p>
+<p>For this problem we just want you to make some observations about modifications made to the application's manifest. Open the application's <span class="code">AndroidManifest.xml</span> file. Notice that when the new activity was created using the wizzard that Android Studio has added the activity the manifest:</p>
+<p><img src="images/problem3-1.png" width="1318" height="482" alt=""/></p>
+<p>&nbsp;</p>
+<p>Every activity in an application needs to be represented in the manifest file so the android OS can access it. Here are a couple of observerations:</p>
+<ul>
+  <li>Android uses the <span class="code">android:name</span> attribute to identify the activity</li>
+  <li>The dot in at the start of <span class="code">.TipCalcActivity</span> indicates it in the package specified in the <span class="code">package</span> attribute of the <span class="code">manifest</span> element (you will sometimes see the full path names as well).</li>
+</ul>
+<p>&nbsp;</p>
+<hr>
+<p class="segment-header">&nbsp;</p>
+<p class="segment-header">Problem 4: Starting the TipCalcActivity<span class="code"></span></p>
+<p>Android Activity and its subclasses provide a static method <span class="code">startActivity(Intent)</span> whereby an activity can start another activity. The request is forwarded to the android ActivityManager who then creates and launches the activity and calls it's onCreate() method. Thus from our code's perspective we will call startActivity(Intent) as a result of the user pressing the <span class="black-bold">Calculate</span> button on the main activity and then the next time our code becomes involved is when our TipCalcActivity's <span class="code">onCreate()</span> methods runs.</p>
+<p>Obvserve our calculate button handler in the main activity currently looks something like this:</p>
+<p><img src="images/problem4-1.png" width="737" height="212" alt=""/></p>
+<p>In particular, it calculates the tip and tax total and displays it for the user. We want it to lauch the new TipCalcActivity instead. Modify the code the following instead:</p>
+<p><img src="images/problem4-2.png" width="956" height="234" alt=""/></p>
+<p><span class="black-bold">Intents</span> in android represent an intended type of activity desired and type of data to be passed to the activity. They are instances of the <span class="code"><a href="https://developer.android.com/reference/android/content/Intent.html">Intent</a></span> class. <span class="black-bold">Explicit intents</span> identify the intended activity by it's class as we have done here, <span class="black-bold">Implicit intents</span> identify activities by the kind of operation desired (repesented by one of the constants defined in the Intent class e.g. <span class="code">Intent.ACTION_VIEW</span>) and we will study those later in future tutorials.</p>
+<p>Here we are creating an intent with a <span class="black-bold">Context</span> and a <span class="black-bold">Class</span> object. The context represents the current activity and the class object represents the kind of activity that you want to start. Again this is an <span class="black-bold">Explicit Intent</span> because we are identifying the exact activity by its class (TipCalcActivity).</p>
+<p>Run the application and verify that when the <span class="black-bold">Calculate Tip&amp;Tax</span> button is presses on the main activity the new <span class="code">TipCalcActivity</span> starts and when the back button is pressed we return to the Main Activity:</p>
+<p><img src="images/problem4-3.png" width="219" height="401" alt=""/>&nbsp;&nbsp;&nbsp;<img src="images/problem4-4.png" width="219" height="401" alt=""/>&nbsp;&nbsp;&nbsp;
+<img src="images/problem4-5.png" width="219" height="401" alt=""/></p>
+<p>&nbsp;</p>
+<p>OPTONAL: You should override all the android activity lifecycle methods in both the MainActivity and the TipCalcActivity and the observe what states the two activities go through in the above scenario.</p>
+<p class="segment-header">&nbsp;</p>
+<hr>
+<p class="segment-header">&nbsp;</p>
+<p class="segment-header">Problem 5: Making the TipCalcActivity Functional<span class="code"></span></p>
+<p>Next write the code in the <span class="code">TipCalcActivity</span> so that it makes use of the <span class="code">TipNTaxCalculator </span>helper class already there and lets the user enter a price and tip percentage and have it calculate the correct total. The initial tip percentage should be the value the <span class="code">TipNTaxCalculator</span> was initialized with but the user should be able to change it. The tax rate will remain fixed. You should add whatever <span class="code">get()</span> and<span class="code"> set()</span> methods to <span class="code">TipNTaxCalculator</span> that you need.</p>
+<p>When you've completed this you should be able to go to the TipCalcActivity screen and use it to compute a total. For now the use has to enter the price in that activity screen. Test to make sure it works:</p>
+<p><img src="images/problem5-1.png" width="219" height="401" alt=""/>&nbsp;&nbsp;&nbsp;<img src="images/problem5-2.png" width="219" height="401" alt=""/></p>
+<p>Demonstrate the the user can change the tip percentage amount:</p>
+<p><img src="images/problem5-3.png" width="219" height="401" alt=""/>&nbsp;&nbsp;&nbsp;<img src="images/problem5-4.png" width="219" height="401" alt=""/></p>
+<p>BONUS: Can you write the code so that the total is shown to only two decimal places.</p>
+<p>&nbsp;</p>
+<hr>
+<p class="segment-header">&nbsp;</p>
+<p class="segment-header">Problem 6: Passing Data To The TipCalcActivity<span class="code"></span></p>
+<p>We want the user to be able to enter the amount in the main activity screen and then when they press Calculate Tip&amp;Tax that that amount be passed over to the new activity to be used in the calculation.</p>
+<p>In the same way that Bundle is used to set and restore activity state, extra data can be attached to the Intent object that is used to start the new activity. In the documentation for the android <span class="code"><a href="https://developer.android.com/reference/android/content/Intent.html">Intent</a></span> class locate the putExtra(String, double) method:<span class="black-bold"></span></p>
+<p><img src="images/problem6-1.png" width="667" height="73" alt=""/></p>
+<p>This method can get be used to add an arbitrary double to the Intent object that will be used to launch the new activity. Also locate its sister method:</p>
+<p><img src="images/problem6-1B.png" width="723" height="74" alt=""/></p>
+<p>which can be used to read the extra data back.</p>
+<p>Add a convenient static string to the main activity class to be used as the key for the extra data:</p>
+<p class="code">public  static final String TIP_N_TAX_MAIN_AMOUNT = &quot;tip_n_tax_main_activity_amount&quot;;</p>
+<p>Add the extra data to you intent before the second activity is started:</p>
+<p><img src="images/problem6-2.png" width="993" height="62" alt=""/></p>
+<p>In the TipCalcActivity onCreate() method we can now read the extra data from the intent that was passed when then new activity was created:</p>
+<p><img src="images/problem6-3.png" width="1067" height="82" alt=""/></p>
+<p><span class="code">getIntent()</span> is an method all <span class="code">Activity</span> objects understand and it will return the <span class="code">Intent</span> object that was passed to <span class="code">startActivity(Intent)</span>.</p>
+<p>Re-run the app and verify that the amount entered on the main activity is passed over to the TipCalcActivity to be used in the calculation:</p>
+<p><img src="images/problem6-4.png" width="219" height="401" alt=""/>&nbsp;&nbsp;&nbsp;<img src="images/problem6-5.png" width="219" height="401" alt=""/></p>
+<p>&nbsp;</p>
+<hr>
+<p class="segment-header">&nbsp;</p>
+<p class="segment-header">Problem 7: Passing Result Back to Main Activity<span class="code"></span></p>
+<p>Finally we want to pass the calculated total back to the main activity to be displayed for the user. If you want an activity to return a result you start it with:</p>
+<p class="code">public void startActivtyForResult(Intent intent, int requestCode)</p>
+<p>rather than</p>
+<p class="code">public void startActivity(Intent intent)</p>
+<p>as we have done so far.</p>
+<p>The <span class="code">requestCode</span> parameter will provide a way for the main activity to identify what result is being returned (more than one activity might have been started).</p>
+<p>Create a convenient requestCode constant in MainActivity:</p>
+<p>private static final int TIP_N_TAX_TOTAL_RESULT = 0; </p>
+<p>Modify the code that starts the activity to pass this result code:</p>
+<pre>Intent&#32;intent&#32;=&#32;new&#32;Intent(MainActivity.this,&#32;TipCalcActivity.class);<br>intent.putExtra(TIP_N_TAX_MAIN_AMOUNT,&#32;amount);<br><s>startActivity(intent);</s><br>startActivityForResult(intent,&#32;TIP_N_TAX_TOTAL_RESULT);</pre>
+<p>There are two method that can be called in the child activity (TipCalcActivity):</p>
+<p class="code">public final void setResult(int resultCode)<br>
+public final void setResult(in resultCode, Intent data)</p>
+<p>In this case the <span class="code">resultCode</span> is typically set to either <span class="code">Activity.RESULT_OK</span> or <span class="code">Activity.RESULT_CANCELLED</span>. These are used to let the parent activity know whether a meaningful result is being returned or whether the operation was cancelled in the child activity. <span class="code">Activity.RESULT_CANCELLED</span> is the default returned if, say, the user presses the back button while in the child activity.)</p>
+<p>The result is sent back by creating an Intent object and adding the data to be returned as EXTRA data. The return result is then set using the Activity's setResult(resultCode, data) method. Add code like the following to the Calculate button handler in the TipCalcActivity class:</p>
+<p><img src="images/problem7-1.png" width="830" height="396" alt=""/></p>
+<p> Finally, when the user presses the back button in the child activity (TipCalcActivity) android's ActivityManager will invoke the following method in our parent activity (MainActivity):</p>
+<p>protected void onActivityResult(int requestCode, int resultCode, Intent data)</p>
+<p>Again the <span class="code">requestCode</span> allows us to identify which result is coming back. The <span class="code">resultCode</span> indicates whether meaningful data is expected or whether the activity was cancelled and finally the <span class="code">data</span> would contain the return result.</p>
+<p>Our final step is to override the <span class="code">onActivityResult(int, int, Intent)</span> method in <span class="code">MainActivity</span> to obtain the result. Here is an example of what that might look like:</p>
+<p><img src="images/problem7-2.png" width="1326" height="229" alt=""/></p>
+<p>Re-run the app and verify that the amount is correctly passed from the <span class="code">MainActivity</span> to the <span class="code">TipCalcActivity</span> and the calculated total is passed back when the user presses the back button after performing the calculation:</p>
+<p><img src="images/problem7-3.png" width="219" height="401" alt=""/>&nbsp;&nbsp;&nbsp;<img src="images/problem7-4.png" width="219" height="401" alt=""/>&nbsp;&nbsp;&nbsp;<img src="images/problem7-5.png" width="219" height="401" alt=""/></p>
+<p><span class="red">When you have completed these problems demonstrate your code to  the TA or Prof. to get credit for the tutorial.</span> </p>
+<p class="segment-header">&nbsp;</p>
+<hr>
+<p class="segment-header">&nbsp;</p>
+<p class="segment-header">OPTIONAL<span class="code"></span></p>
+<p>The following things have not been addressed in the code but should be:</p>
+<ul>
+  <li>The code should handle the user typing nonsense in the text field (e.g. non number in the amount text field).</li>
+  <li>The calculated amounts are showing with too many decimal places and that looks silly. Change the code so that only two decimal places are shown for computed totals.</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+</body>
+</html>

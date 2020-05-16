@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">1601 Quiz</string>
+    <string
+        name="yes_button_label">Yes</string>
+    <string name="no_button_label">No</string>
+    <string name="question_text">Do you know Java?</string>
+</resources>
+

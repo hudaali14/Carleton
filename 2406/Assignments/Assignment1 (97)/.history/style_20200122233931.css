@@ -1,0 +1,26 @@
+#header{
+    width: 1450px;
+    height: 150px;
+    margin: 0px;
+    padding: 20px;
+    border: 0px;
+    text-align: center;
+    background-color: mistyrose;
+    background-image: linear-gradient(lightcoral, peachpuff);
+}
+
+#categories{
+    width: 400px;
+    height: 600px;
+    background-color: lemonchiffon;
+}
+
+#display{
+    width: 400px;
+    height: 600px;
+    background-color: palegreen;
+}
+
+body{
+    margin : 0;
+}

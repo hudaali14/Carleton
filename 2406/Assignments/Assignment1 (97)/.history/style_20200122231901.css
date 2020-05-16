@@ -1,0 +1,13 @@
+#header{
+    width: 870px;
+    height: 150px;
+    margin: 0px;
+    padding: 20px;
+    border: 0px;
+    text-align: center;
+    background-color: palegoldenrod;
+}
+
+body{
+    margin : 0;
+}

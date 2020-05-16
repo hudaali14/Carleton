@@ -1,0 +1,24 @@
+package com.comp1601.truefalsequiz;
+
+/**
+ * Created by ldnel on 2017-12-31.
+ */
+
+public class Question {
+    private String mQuestion;
+    private String mAnswer;
+
+    public Question(String aQuestionAnswerString){
+        //aQuestionAnswerString is expected to be of the form:
+        //"Is Java an Object-Oriented Language?[Yes]"
+        int index = aQuestionAnswerString.indexOf("[");
+        mQuestion = aQuestionAnswerString.substring(0,index);
+        mAnswer = aQuestionAnswerString.substring(index+1,aQuestionAnswerString.length()-1);
+    }
+    public String getQuestion(){
+        return mQuestion;
+    }
+    public String getAnswer(){
+        return mAnswer;
+    }
+}

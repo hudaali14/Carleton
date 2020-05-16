@@ -1,0 +1,26 @@
+a3:	main.o Book.o  List.o Logger.o View.o
+	g++ -o a3 main.o Book.o List.o Logger.o View.o 
+
+main.o:	main.cc
+	g++ -c main.cc
+
+Book.o:	Book.cc Book.h
+	g++ -c Book.cc
+
+Control.o: Control.cc Control.h
+	g++ -c Control.cc
+
+Library.o: Library.cc Library.h
+	g++ -c Library.cc
+
+List.o:	List.cc List.h Book.h
+	g++ -Wall -c List.cc
+
+Logger.o: Logger.cc Logger.h
+	g++ -c Logger.cc
+
+View.o:	View.cc View.h
+	g++ -c View.cc
+
+clean:
+	rm -f *.o a3

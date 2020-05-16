@@ -1,0 +1,36 @@
+#header{
+    margin: 0px;
+    padding: 20px;
+    border: 0px;
+    text-align: center;
+    background-color: mistyrose;
+    color: ivory;
+    text-shadow: 2px 2px 4px #000000;
+    font-family: 'Lucida Sans';
+}
+
+#dropdownText{
+    text-align:left;
+}
+
+#categories{
+    padding: 10%;
+    background-color: lemonchiffon;
+    color: black;
+    overflow: auto;
+    display: inline-block;
+    border: 0px;
+    margin: 0px;
+}
+
+#items{
+    background-color: rgb(253, 193, 230);
+    border: 0px;
+    margin: 0px;
+    color: black;
+}
+
+
+body{
+    margin : 0;
+}

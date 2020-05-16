@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>COMP2601</title>
+<link href="template.css" rel="stylesheet" type="text/css" />
+<style>
+body {
+	font-family: arial;
+	margin-left: 80px;
+}
+p {
+	font-size:24px;
+}
+pre {font-size:20px;}
+hr {
+	width: 100%;
+	height: 2px;
+	
+	margin-top:10px;
+	margin-bottom:10px
+}
+.header {
+	text-align: center;
+	font-weight: bold;
+	font-size: 40px;
+	
+	margin-top:0px;
+	margin-bottom:0px;
+	
+	color: rgb(153, 0, 0);
+}
+.subheader {
+	color: #000099;
+	
+	margin-bottom:100px;
+}
+.segment-header {
+	color: rgb(0, 0, 153);
+	font-size: 30px;
+}
+.black-bold {
+	color: rgb(0,0,0);
+	font-weight: bold;
+}
+.glossary-term {
+	font-weight: 700;
+	color: #000099;
+}
+.code {
+	font-family: 'Courier New';
+}
+.comment {
+	color:rgb(0, 128, 0);
+}
+ul li {
+	margin-bottom: 5px;
+	font-size:24px;
+}.red {
+	color: #F00;
+}
+</style>
+</head>
+<body>
+<p class="header">COMP 1601 Winter 2020</p>
+<p class="header subheader">Tut03 -XML and XML UI Layout in Android</p>
+<p>&copy; L.D. Nel 2020</p>
+<hr/>
+<p class="red">Revisions:</p>
+<hr/>
+<p class="segment-header">Description</p>
+<p>The purpose of this tutorial is to familiarize you with XML and how it is applied to UI component layout in Android. Android makes extensive use of XML both for component layout and also for  other application configuration data.</p>
+<p>Before proceeding with the tutorial exercises you should familiarize yourself with XML. The following is a good place to start: <a href="https://www.w3schools.com/xml/">https://www.w3schools.com/xml/</a></p>
+<p>Part I: In the previous exercise you built a &quot;hello world&quot; project from scratch. Here we want you to start a new project from scratch. We will build a simple quiz app that asks the user to respond with &quot;yes&quot; or &quot;no&quot; to some questions. In this part we will just add a few UI (user interface) components using XML.</p>
+<p>This tutorial exercise is based on the GeoQuiz app built in  Chapter 1 of &quot;Android Programming: The Big Nerd Ranch Guide&quot;, 3/e by Bill Phillips, Chris Stewart, and Kristin Marsicano &copy;2017.</p>
+<p>Part II of this tutorial is to help familiarize you with XML in general. You can do either part first.</p>
+<p class="red">You need to demonstrate your exercise to the TA or Prof. before you leave the class to get credit for it. If you complete, or make significant progress on the exercise you will get a mark of 2. If you make some progress you will get a mark of 1 and can &quot;upgrade&quot; that mark to a 2 by showing your completed work within one week of this exercise. 0 marks for a no-show or unsufficient progress.</p>
+<hr/>
+<p class="segment-header">Part I: Background<br /></p>
+<p class="segment-header">Demo Code</p>
+<p>This exercise has no demo code as we are building things from scratch.</p>
+<p class="red">(Note the screen captures in this exercise are what I experienced putting the tutorial together. Your's may vary. Please help us by pointing out variations that you encounter.)</p>
+<p>&nbsp;</p>
+<p class="segment-header">Problem 0) Preliminary</p>
+<p>Using the steps from tutorial 02 create a brand new project called <span class="black-bold">TrueFalseQuiz</span> based on an <span class="black-bold">Empty Activity</span> and verify that it runs on an AVD. (Don't just copy the old Hello World project -if you do be prepared for  additional debugging.)</p>
+<p><img src="images/problem0-1.png"  alt=""/></p>
+<p><img src="images/problem0-1B.png" width="768" height="517" alt=""/></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><img src="images/problem0-3.png" width="252" height="462" alt=""/></p>
+<p>&nbsp;</p>
+<hr>
+<p>&nbsp;</p>
+<p class="segment-header">Problem 1) XML String Resources</p>
+<p>For our first problem we will investigate where the app's title and screen content is being represented. String resources for user interface components are, in general, represented as XML resources  -or should be at least.</p>
+<p>Expand the resources or <span class="black-bold">res</span> section of the andoid app. We will be looking at the <span class="black-bold">value/strings.xml</span> resources and layout resources.</p>
+<p><img src="images/problem1-1.png" width="417" height="328" alt=""/></p>
+<p>&nbsp;</p>
+<p>Open the <span class="code">strings.xml</span> file. It's contents should look like the following:</p>
+<p><img src="images/problem1-2.png" width="466" height="56" alt=""/></p>
+
+<p>&nbsp;</p>
+<p>Change the XML string resource to be &quot;1601 Quiz&quot; instead of &quot;TrueFalseQuiz&quot;.</p>
+<p>Also add three new string resources to act as the labels of two buttons and an initial question.</p>
+<p><br>
+  <span class="code">&lt;string name=&quot;yes_button_label&quot;&gt;Yes&lt;/string&gt;<br>
+  &lt;string name=&quot;no_button_label&quot;&gt;No&lt;/string&gt;
+	<br>
+	&lt;string name=&quot;question_text&quot;&gt;Do you know Java?&lt;/string&gt;
+	</span></p>
+<p>&nbsp;</p>
+<p>We will generally  use string resources like this instead of hard-coding  literal strings within the code.</p>
+<p>Re-run the app and it should now have the new app name in the title bar.</p>
+<p><img src="images/problem1-3.png" alt=""/></p>
+<p>&nbsp;</p>
+<p class="segment-header">&nbsp;</p>
+<p class="segment-header">Problem 2) Layout Resources</p>
+<p>Next open the <span class="black-bold">activity_main.xml</span> layout resources file. Make sure the <span class="black-bold">Text</span> tab is active to see the XML code. (Also notice an ugly instance of a hard-coded hello world string.) (Note some screen captures are from Android Studio 3.3 and my be slightly different in version 3.5.)</p>
+<p><img src="images/problem2-1.png" width="939" height="468" alt=""/></p>
+<p>&nbsp;</p>
+<p>If you click the <span class="black-bold">Design</span> tab you will see a graphical representation of the layout. In this tutorial we are going to lay things out manually by manipulating the XML resources. In future exercises we will make use of graphical layout tools. Keep flipping back and forth between <span class="black-bold">Text</span> and <span class="black-bold">Design</span> to see the impact of changes you make.</p>
+<p><img src="images/problem2-2.png" width="798" height="435" alt=""/></p>
+<p>&nbsp;</p>
+<p>The <span class="code">activity_main.xml</span> layout resource file describes, or configures, what various user-interface components will be and how they will be positioned. Android uses XML as a format for providing various configuration data for an app. </p>
+<p>Next we will add the XML resources to represent two buttons for your quiz application.</p>
+<p>Replace the code with the following instead. Again, type it out yourself and see how much you understand and notice to what extent Android Studio tries to help with auto completion.</p>
+<p><img src="images/problem2-3.png" width="761" height="627" alt=""/></p>
+
+<p>&nbsp;</p>
+<p>Flip over to the <span class="black-bold">Design</span> tab to see the effect of your XML (Notice both the UI mockup and the &quot;blueprint&quot; view):</p>
+<p><img src="images/problem2-4.png" width="682" height="593" alt=""/></p>
+<p>&nbsp;</p>
+<p>Finally re-run your app to see the new interface. Notice you can click on the buttons but nothing happens (other than they appear to click).</p>
+<p><img src="images/problem2-5.png" alt=""/></p>
+<p>&nbsp;</p>
+<p>Here is a brief explanation of some of the XML you created:</p>
+<p>1) The XML defines a hierarchy (tree) with items nested within others. XML should always from a tree.</p>
+<p>2) <span class="code">LinearLayouts</span> are containers that hold other components. The are called linear because they lay out their child components one after the other. Their orientation attribute dictates whether children will be layed out vertically one after the other or horizontally.</p>
+<p>3) <span class="code">width</span> and <span class="code">height</span> attributes set to <span class="code">match_parent</span> will set the size of the component to match, or fill, the parent's area; <span class="code">wrap_content</span> on the other hand means make the component just large enough to wrap the content it contains.</p>
+<p>4) The text view appears larger than the content because it specifies some padding. (24dp padding means 24 <span class="black-bold">density-independent pixels</span>.) </p>
+<p>5) Notice how the string resources are referenced: <span class="code">@string/yes_button_label</span>.</p>
+<p>Exercise: can you figure out why the UI components seem to be at the center of the screen area?</p>
+<p>&nbsp;</p>
+<hr>
+<p class="segment-header">Part II XML</p>
+<p class="segment-header">Problem 3) XML Data Specification</p>
+<p>Having familiarlized yourself with XML we want to to build an XML specification for the following scenario:</p>
+<p>We want to model data that pertains to users of an application that maintains playlists of songs. Each <span class="black-bold">user</span> has  a <span class="black-bold">name</span> and a <span class="black-bold">userid.</span> Each <span class="black-bold">playlist</span> has a <span class="black-bold">name</span> (e.g. favourites, or party tunes). Each playlist is a collection of <span class="black-bold">song</span> instances. A song has a <span class="black-bold">title</span>, a <span class="black-bold">composer</span>, an <span class="black-bold">artist</span> (performer) and a <span class="black-bold">rating</span> (e.g. &quot;*&quot;...&quot;*****&quot;).</p>
+<p>Create a <span class="code">mytunes_data.xml</span> file with legal XML that would model a couple of users each with a couple of playlists consisting of some songs.</p>
+<p>Demonstrate that your XML validates using the W3 Schools XML Validator at: <a href="https://www.w3schools.com/xml/xml_validator.asp">https://www.w3schools.com/xml/xml_validator.asp</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="red">When you have completed these problems demonstrate your code to  the TA or Prof. to get credit for the tutorial.</span> </p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+</body>
+</html>

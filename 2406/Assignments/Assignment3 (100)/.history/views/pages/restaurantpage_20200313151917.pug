@@ -1,0 +1,83 @@
+html 
+    head
+        title  You Want Food? 
+body
+    include ../partials/header
+    h1 Restaurant Info
+    p#idres Restaurant ID: 
+    p
+        | Restaurant Name:
+        input(type= "text", id="name", value = restaurant.name) 
+    br
+    br
+    p
+        | Restaurant Min Order: 
+    input(type= "text", id="min", value = restaurant.min_order) 
+    br
+    br
+    p
+        | Delivery Fee: 
+    input(type= "text", id="delivery", value = restaurant.delivery_fee) 
+    br
+    br
+
+    h1 Add Category: 
+    br
+    p
+        | Category Name: 
+    input(type= "text", id="category") 
+    br
+
+    button(type="button", id="categorybutton") Add Category
+
+
+    h1 Add Item: 
+    br
+    p
+        | Select Category: 
+    - let menu = Object.keys(restaurant.menu);
+    select
+        each category in menu
+            option=category
+    br
+    p
+        | Item Name: 
+    input(type= "text", id="itemname") 
+    br
+    p
+        | Item Description: 
+    input(type= "text", id="itemdescription") 
+    br
+    p
+        | Item Price: 
+    input(type= "text", id="itemprice") 
+    br
+    button(type="button", id="additembutton") Add Item
+    br
+    br
+
+    h1 Menu
+
+    each category in menu
+        h4 #{category}
+        - let items = Object.keys(restaurant.menu[category])
+        each id in items
+            - let item = restaurant.menu[category][id];
+            | Name: 
+            p #{item.name}
+            | Description: 
+            p #{item.description}
+            | Price: 
+            p #{item.price}
+
+    button(type="button", id="save") Save
+
+    script(src="/updateRestaurant.js")
+
+
+    
+
+
+
+
+    

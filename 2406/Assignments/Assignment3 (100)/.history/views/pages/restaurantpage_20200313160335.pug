@@ -1,0 +1,59 @@
+html 
+    head
+        title  You Want Food? 
+body
+    include ../partials/header
+    h1 Restaurant Info
+    p#idres Restaurant ID: 
+    p 
+        | Restaurant Name: 
+        input(type= "text", id="name") 
+    p
+        | Restaurant Min Order:  
+        input(type= "text", id="min") 
+    p
+        | Delivery Fee:  
+        input(type= "text", id="delivery") 
+    br
+    br
+
+    h1 Add Category:
+    p
+        | Category Name: 
+        input(type= "text", id="category") 
+    button(type="button", id="categorybutton") Add Category
+    br
+    br
+
+    h1 Add Item: 
+    p
+        | Select Category: 
+        select#dropdown
+    p
+        | Item Name: 
+        input(type= "text", id="itemname") 
+    p
+        | Item Description: 
+        input(type= "text", id="itemdescription") 
+    p
+        | Item Price: 
+        input(type= "text", id="itemprice") 
+
+    button(type="button", id="additembutton") Add Item
+    br
+    br
+
+    h1 Menu
+
+    
+    button(type="button", id="save") Save
+
+    script(src="/updateRestaurant.js")
+
+
+    
+
+
+
+
+    

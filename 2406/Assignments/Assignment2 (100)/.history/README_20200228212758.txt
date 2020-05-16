@@ -1,0 +1,33 @@
+COMP 2406 - Assignment 2
+
+Huda Ali 101120387
+
+Source Files:
+	• client.js
+	• order.html
+    	• style.css
+	• server.js
+	• restaurants
+		• aragorn.json
+		• legolas.json
+		• drodo.json
+	• views
+		• pages
+			• home.pug
+			• order.pug
+			• stats.pug
+		• partials
+			• header.pug
+
+Specs:
+	• Pug must be installed to run these files
+	• To run server
+		• First make sure you are in the correct directory
+		• Into the terminal type -> node ./server.js
+		• The text "Server running at http://127.0.0.1:3000/" running will appear 		to let you know the server is running
+	• Once server is running into any browser type -> http://localhost:3000/
+	• Once the client browser is loaded there will be a header that allows you to 		navigate through each page
+	• When restaurant is chosen in order page, category, items, and cart is shown
+	• When mouse is hovered over a header/category names, the text changes to blue
+	• Category items follow the down the page
+	• Used CSS to design order page and make visually appealing -> style.css

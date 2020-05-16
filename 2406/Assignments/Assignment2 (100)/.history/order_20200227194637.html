@@ -1,0 +1,38 @@
+<html>
+    <div id="head">
+        <a href="http://localhost:3000/home">Home Page</a>
+        <a href="http://localhost:3000/orderform">Order Form</a>
+        <a href="http://localhost:3000/stats">Restaurant Stats</a>
+    </div>
+    <head>
+        <title> You Want Food? </title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body onload="init()">
+        <div id="header">
+            <h1>You Want Food NOW?</h1>
+            <div id="headerBox">
+                <div id= "dropdownText">
+                    <p><strong>Please select a restaurant to order from</strong></p>
+                    <select id="dropdown">
+                        <option value="select a restaurant" selected>Select a Restaurant</option>
+                    </select>
+                </div>
+                <p id="requirements"></p>
+            </div>
+                
+        </div>
+
+        <div id= "main"></div>
+
+        <div id= "box">
+            <div id="categories"></div>
+        
+            <div id="items"></div>
+
+            <div id="itemsOrdered"></div>
+        </div>
+
+        <script src="client.js"></script>
+    </body>
+</html>

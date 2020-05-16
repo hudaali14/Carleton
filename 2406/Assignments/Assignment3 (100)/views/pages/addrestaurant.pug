@@ -1,0 +1,20 @@
+html 
+    head
+        title  You Want Food? 
+body
+    include ../partials/header
+    
+    h1 Add Restaurant
+    div 
+        | Restaurant Name: 
+        input(type= "text", id="restaurantname") 
+        br
+        | Delivery Fee: 
+        input(type= "text", id="deliveryfee")
+        br
+        | Minimum Order: 
+        input(type= "text", id="minimumorder")
+        br
+        button(type="button", id="submitbutton") Submit
+
+script(src="/createRestaurant.js")

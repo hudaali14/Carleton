@@ -1,0 +1,66 @@
+#header{
+    margin: 0px;
+    padding: 20px;
+    border: 0px;
+    text-align: center;
+    background-color: mistyrose;
+    color: ivory;
+    text-shadow: 2px 2px 4px #000000;
+    font-family: 'Lucida Sans';
+}
+
+#dropdownText{
+    text-align:left;
+}
+
+#main{
+    margin: 0px;
+    border: 0px;
+    display: flex;
+    flex-flow: column;
+    background-color: blue;
+}
+
+#requirements{
+    text-align: right;
+    display: inline;
+}
+
+#categories{
+    background-color: lemonchiffon;
+    color: black;
+    display: inline-block;
+    border: 0px;
+    margin: 0px;
+}
+
+#items{
+    background-color: rgb(253, 193, 230);
+    border: 0px;
+    margin: 0px;
+    color: black;
+    display: inline-block;
+}
+
+#itemsOrdered{
+    background-color: bisque;
+    border: 0px;
+    margin: 0px;
+    color: black;
+    display: inline-block;
+}
+
+#image{
+    width: 20px;
+    height: 20px;
+}
+
+
+body{
+    margin : 0;
+}
+
+.links, .links:visited{
+    text-decoration: none;
+    color: black;
+}
