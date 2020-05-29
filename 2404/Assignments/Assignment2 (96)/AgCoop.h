@@ -23,13 +23,13 @@ class AgCoop
   public:
     AgCoop();
     ~AgCoop();
-    void add(Farm* f);
-    void add(int id, Animal* a);
+    void add(Farm* farm);
+    void add(int farmId, Animal* animal);
     void print();
 
   private:
     Farm* farmCollection[MAX_FARM];
-    int size;
+    int numFarms;
 };
 
 #endif

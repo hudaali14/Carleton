@@ -11,7 +11,7 @@ PURPOSE: Animal class with a name, age, and lifespan
 class Animal
 {
   public:
-    Animal(string="Fluffy", int=0, float=0);
+    Animal(string="Fluffy", int=0, int=0);
     ~Animal();
     string getName() const;
     int    getAge()  const;

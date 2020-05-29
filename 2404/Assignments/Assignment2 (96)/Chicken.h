@@ -12,7 +12,7 @@ PURPOSE:  Chicken class as derived from Animal with name, age, lifespan, and egg
 class Chicken : public Animal
 {
   public:
-    Chicken(string="Little Red Hen", int=0, float=0, int=0);
+    Chicken(string="Little Red Hen", int=0, int=0, int=0);
     ~Chicken();
     virtual void print() const;
 

@@ -5,15 +5,13 @@ using namespace std;
 #include "Animal.h"
 
 
-Animal::Animal(string n, int a, float lf)
+Animal::Animal(string n, int a, int lf)
     : name(n), age(a), lifespan(lf)
 {
-  cout<<"------ Animal ctor: "<<name<<endl;
 }
 
 Animal::~Animal()
 {
-  cout<<"------ Animal dtor: "<<name<<endl;
 }
 
 string Animal::getName() const { return name; }

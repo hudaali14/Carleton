@@ -4,15 +4,13 @@ using namespace std;
 
 #include "Chicken.h"
 
-Chicken::Chicken(string n, int a, float l, int e) : eggCount(e), Animal(n,a,l)
+Chicken::Chicken(string n, int a, int l, int e) : eggCount(e), Animal(n,a,l)
 {
-  cout << "------ Chicken ctor: " << getName() << endl;
 
 }
 
 Chicken::~Chicken()
 {
-  cout << "------ Chicken dtor: " << getName() << endl;
 }
 
 void Chicken::print() const

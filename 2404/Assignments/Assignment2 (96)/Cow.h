@@ -12,12 +12,12 @@ PURPOSE: Cow class as derived from Animal with name, age, lifespan, and milk tim
 class Cow : public Animal
 {
   public:
-    Cow(string="Little Red Hen", int=0, float=0, string="00:00");
+    Cow(string="", int=0, int=0, string="");
     ~Cow();
     virtual void print() const;
 
   private:
-    string milk;
+    string milkTime;
 };
 
 #endif

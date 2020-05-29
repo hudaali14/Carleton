@@ -22,7 +22,7 @@ class Farm
     Farm();
     ~Farm();
     int getId();
-    void add(Animal* a);
+    void add(Animal* animal);
     void print();
 
   private:

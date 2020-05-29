@@ -4,18 +4,16 @@ using namespace std;
 
 #include "Cow.h"
 
-Cow::Cow(string n, int a, float l, string m) : milk(m), Animal(n,a,l)
+Cow::Cow(string n, int a, int l, string m) : milkTime(m), Animal(n,a,l)
 {
-  cout << "------ Cow ctor: " << getName() << endl;
 }
 
 Cow::~Cow()
 {
-  cout << "------ Cow dtor: " << getName() << endl;
 }
 
 void Cow::print() const
 {
   Animal::print();
-  cout << "     and I'm a cow that gets milked at " << milk << endl;
+  cout << "     and I'm a cow that gets milked at " << milkTime << endl;
 }

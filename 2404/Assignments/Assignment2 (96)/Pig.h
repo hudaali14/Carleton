@@ -12,12 +12,12 @@ PURPOSE: Pig class as derived from Animal with name, age, lifespan, and pen numb
 class Pig : public Animal
 {
   public:
-    Pig(string="Little Red Hen", int=0, float=0, int=0);
+    Pig(string="", int=0, int=0, int=0);
     ~Pig();
     virtual void print() const;
 
   private:
-    int pens;
+    int penNumber;
 };
 
 #endif

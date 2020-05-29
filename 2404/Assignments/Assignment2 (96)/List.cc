@@ -3,13 +3,10 @@ using namespace std;
 
 #include "List.h"
 
-List::List() : head(NULL) {
-  cout << "---- List ctor: "  << endl;
-}
+List::List() : head(NULL) {}
 
 List::~List()
 {
-  cout << "---- List dtor: "  << endl;
   Node* currNode;
   Node* nextNode;
 
@@ -17,7 +14,6 @@ List::~List()
 
   while (currNode != NULL) {
     nextNode = currNode->next;
-    cout << "----- List object dtor: "  << endl;
     delete currNode->data;
     delete currNode;
     currNode = nextNode;

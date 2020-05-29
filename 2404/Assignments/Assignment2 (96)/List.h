@@ -23,7 +23,7 @@ class List
   {
     public:
       Animal* data;
-      Node*    next;
+      Node*   next;
   };
 
   public:

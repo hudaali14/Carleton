@@ -3,9 +3,6 @@ using namespace std;
 #include <string>
 
 #include "Control.h"
-#include "Chicken.h"
-#include "Cow.h"
-#include "Pig.h"
 
 
 void Control::launch()
@@ -18,11 +15,14 @@ void Control::launch()
 
   while (1) {
     view.showMenu(choice);
+
+    // If user choice is 0 then prints all farms and animals and breaks 
     if (choice == 0){
       ag.print();
       break;
     }
 
+    // Prints and reads all user data
     view.printStr("Farm ID: ");
     view.readInt(fid);
     view.printStr("Name: ");
@@ -31,37 +31,47 @@ void Control::launch()
     view.readInt(age);
     view.printStr("Lifespan: ");
     view.readInt(lf);
-    float lifespan = (float) lf;
-    Animal* animal = NULL;
+
+    // If user choice to add a chicken
     if (choice == 1) {
+      //Reads egg count, creates chicken, then add chicken to farm
       view.printStr("Egg Count: ");
       view.readInt(ec);
-      animal = new Chicken(name, age, lifespan, ec);
+      Chicken* chicken = new Chicken(name, age, lf, ec);
+      ag.add(fid, chicken);
+
+    // If user choice to add a cow
     }else if (choice == 2) {
+      //Reads milk time, creates cow, then add cow to farm
       view.printStr("Milk time: ");
       view.readStr(milk);
-      animal = new Cow(name, age, lifespan, milk);
+      Cow* cow = new Cow(name, age, lf, milk);
+      ag.add(fid, cow);
 
+    // If user choice to add a pig
     }else if (choice == 3) {
+      //Reads pen number, creates pig, then add pig to farm
       view.printStr("Pen number: ");
       view.readInt(pen);
-      animal = new Pig(name, age, lifespan, pen);
-    }
-    if(animal != NULL){
-      ag.add(fid, animal);
+      Pig* pig = new Pig(name, age, lf, pen);
+      ag.add(fid, pig);
     }
 
   }
 
 }
 
+// Initializes farms and animals
 void Control::initAnimals(){
+
+  //Creates 5 farms
   Farm* f1 = new Farm();
   Farm* f2 = new Farm();
   Farm* f3 = new Farm();
   Farm* f4 = new Farm();
   Farm* f5 = new Farm();
 
+  // Randomly adds 20 different animals to 5 farms
   f5->add(new Chicken("Chick1", 3, 8, 7));
   f1->add(new Cow("Cow2", 19, 20, "03:30"));
   f4->add(new Pig("Pig3", 3, 10, 2));
@@ -83,8 +93,7 @@ void Control::initAnimals(){
   f3->add(new Chicken("Chick19", 1, 8, 5));
   f3->add(new Pig("Pig20", 5, 10, 4));
 
-
-
+  // Adds farms to ag
   ag.add(f1);
   ag.add(f2);
   ag.add(f3);
