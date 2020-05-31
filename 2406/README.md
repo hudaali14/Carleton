@@ -7,4 +7,5 @@ Term: Winter 2020
 Professor: David Mckenney
 
 Programming Language: JavaScript
+
 Other Languages/Technologies: NodeJS, ExpressJS, HTML, CSS, MongoDB
